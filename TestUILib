@@ -1068,9 +1068,9 @@ function lib:Main()
                     local list = game:GetService("Players"):GetChildren()
                     for i,v in pairs(list) do
                         if v:IsA("Player") then
-                            if v.DisplayName~=""then 
+                            if v.DisplayName~=v.Name then 
                                 table.insert(optionstable, v.Name.."("..v.DisplayName..")");
-                            elseif v.DisplayName==""then 
+                            elseif v.DisplayName==v.Name then 
                                 table.insert(optionstable, v.Name);
                             end;
                         end
@@ -1080,9 +1080,9 @@ function lib:Main()
                     local list = game:GetService("Players"):GetChildren()
                     for i,v in pairs(list) do
                         if v:IsA("Player")then
-                            if v.DisplayName~=""then 
+                            if v.DisplayName~=v.Name then 
                                 table.insert(optionstable, v.Name.."("..v.DisplayName..")");
-                            elseif v.DisplayName==""then 
+                            elseif v.DisplayName==v.Name then 
                                 table.insert(optionstable, v.Name);
                             end;
                         end
@@ -1184,9 +1184,9 @@ function lib:Main()
                         local list = game.Players:GetChildren()
                         for i,v in pairs(list) do
                             if v:IsA("Player") then
-                                if v.DisplayName~=""then 
+                                if v.DisplayName~=v.Name then 
                                     table.insert(optionstable, v.Name.."("..v.DisplayName..")");
-                                elseif v.DisplayName==""then 
+                                elseif v.DisplayName==v.Name then 
                                     table.insert(optionstable, v.Name);
                                 end;
                             end
