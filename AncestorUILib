@@ -1076,9 +1076,6 @@ function lib:Main()
                     local list = game:GetService("Players"):GetChildren()
                     for i,v in pairs(list) do
                         if v:IsA("Player") then
-                            if v.DisplayName then 
-                                table.insert(optionstable, v.Name.."("..v.DisplayName..")")
-                            else
                             table.insert(optionstable, v.Name)
                         end
                     end                                 
