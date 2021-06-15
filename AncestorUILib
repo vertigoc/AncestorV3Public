@@ -1063,6 +1063,9 @@ function lib:Main()
 				elseif Options and Options.options and Playerlist then
 					optionstable = {}
 					for g,f in pairs(Options.options) do
+                        if i==1 then 
+                            i=5
+                        end
 						table.insert(optionstable, f)
 					end
 					local list = game:GetService("Players"):GetChildren()
