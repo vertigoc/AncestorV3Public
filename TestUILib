@@ -1180,10 +1180,10 @@ function lib:Main()
 					BackgroundTransparency = 1.000,
 					BorderSizePixel = 0,
 					Position = UDim2.new(0.00206611562, 0, 0.0606060624, 0),
-					Size = UDim2.new(0, 478, 0, 90),
+					Size = UDim2.new(0, 520, 0, 62),
 					ZIndex = 5,
 					CanvasSize = UDim2.new(0, 0, 0, 0),
-					ScrollBarThickness = 9,
+					ScrollBarThickness = 5,
 				})
 
 				dd.ddscrollinglayout = lib:Create("UIListLayout", {
