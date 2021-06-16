@@ -948,7 +948,8 @@ function lib:Main()
 			function sections:KeyBind(Name, CallBack, Default)
 				local kb = {}
 				local kbind
-
+                local connection
+                local removedCheck
 				kb.kbback = lib:Create("ImageLabel", {
 					Name = Name.."KeyBind",
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -1038,13 +1039,26 @@ function lib:Main()
 					end)
 				end)
 
-				connections.keybinds=game:GetService("UserInputService").InputBegan:Connect(function(i, GPE)
-					if kbind and i.KeyCode == kbind and not GPE then
+				connection=game:GetService("UserInputService").InputBegan:Connect(function(i, GPE)
+					if kbind and i.KeyCode == kbind and not GPE and not c then
 						if CallBack then
 							CallBack(i.KeyCode)
 						end
 					end
 				end)
+
+                removedCheck=game.CoreGui.ChildRemoved:Connect(function(b)
+                    if tostring(b)=="Ancestor"then 
+                        if connection then 
+                            connection:Disconnect();
+                            connection=nil;
+                        end;
+                        if removedCheck then 
+                            removedCheck:Disconnect()
+                            removedCheck=nil;
+                        end;
+                    end;
+                end)
 
 				categories.Container.CanvasSize = categories.Container.CanvasSize + UDim2.new(0,0,0,40)
 
@@ -1759,17 +1773,6 @@ function lib:Main()
 	main.Close.MouseButton1Click:Connect(function()
 		game.CoreGui.Ancestor:Destroy()
 	end)
-
-    game.CoreGui.ChildRemoved:Connect(function(b)
-        if tostring(b)=="Ancestor"then 
-            for _,connection in next,connections do 
-                if typeof(connection)=="RBXScriptConnection"then 
-                    connections:Disconnect();
-                    connections=nil;
-                end;
-            end;
-        end;
-    end)
 
 	main.ScreenGui.Parent = CoreGui
 	main.MainBody.Parent = main.ScreenGui
