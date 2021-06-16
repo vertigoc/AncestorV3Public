@@ -1120,7 +1120,7 @@ function lib:Main()
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					BackgroundTransparency = 1.000,
 					Position = UDim2.new(0.009999929, 0, 0.0857142881, 0),
-					Size = UDim2.new(0, 476, 0, 29),
+					Size = UDim2.new(0, 525, 0, 29),
 					Image = "rbxassetid://3570695787",
 					ImageColor3 = Color3.fromRGB(55, 55, 55),
 					ScaleType = Enum.ScaleType.Slice,
