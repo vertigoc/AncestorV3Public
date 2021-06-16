@@ -1188,7 +1188,7 @@ function lib:Main()
 
 				dd.ddscrollinglayout = lib:Create("UIListLayout", {
 					SortOrder = Enum.SortOrder.LayoutOrder,
-					Padding = UDim.new(0, 5),
+					Padding = UDim.new(0, 7),
 				})
 
 				local function refreshlist()
