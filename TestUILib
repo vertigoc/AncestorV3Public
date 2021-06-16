@@ -1703,7 +1703,7 @@ function library.initiate(setting)
 						BackgroundTransparency = 1.000,
 						BorderColor3 = Color3.fromRGB(27, 42, 53),
 						Position = UDim2.new(0, 0, 0, 40),
-						Size = UDim2.new(1, 0, 0, 150),
+						Size = UDim2.new(1, 0, 0, 120),
 						ZIndex = 2,
 						Image = "rbxassetid://3570695787",
 						ImageColor3 = Color3.fromRGB(math.floor(Themes.GrayContrastColor.r * 255) - 3, math.floor(Themes.GrayContrastColor.g * 255) - 3, math.floor(Themes.GrayContrastColor.b * 255) - 3),
@@ -1721,7 +1721,7 @@ function library.initiate(setting)
 						ZIndex = 2,
 						CanvasSize = UDim2.new(0, 0, 0, 0),
 						ScrollBarImageColor3 = Color3.fromRGB(35 - 5, 35 - 5, 35 - 5),
-						ScrollBarThickness = 5,
+						ScrollBarThickness = 3,
 					})
 
 					dropdowns.listlayout = library.create("UIListLayout", {
