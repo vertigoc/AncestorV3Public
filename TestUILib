@@ -1182,7 +1182,7 @@ function lib:Main()
 					Position = UDim2.new(0.00206611562, 0, 0.0606060624, 0),
 					Size = UDim2.new(0, 520, 0, 62),
 					ZIndex = 5,
-					CanvasSize = UDim2.new(0, 0, 0, 10),
+					CanvasSize = UDim2.new(0, 20, 0, 20),
 					ScrollBarThickness = 5,
 				})
 
