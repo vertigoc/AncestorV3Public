@@ -1762,9 +1762,11 @@ function lib:Main()
 
     game.CoreGui.ChildRemoved:Connect(function(b)
         if tostring(b)=="Ancestor"then 
-            if connections.keybinds then 
-                connections.keybinds:Disconnect();
-                connections.keybinds=nil;
+            for _,connection in next,connections do 
+                if typeof(connection)=="RBXScriptConnection"then 
+                    connections:Disconnect();
+                    connections=nil;
+                end;
             end;
         end;
     end)
