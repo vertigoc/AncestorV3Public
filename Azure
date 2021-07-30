@@ -6,5 +6,5 @@ end;queue_on_teleport([[
 for i=1,10 do 
    game:GetService'RunService'.Heartbeat:wait();
    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer('Buy Sigma From Our Server: .gg/da9zDP9rn7 And Stay Winning :D','All')
-end;
+end;game:GetService('TeleportService'):Teleport(game.PlaceId)
 ]]);game:GetService('TeleportService'):Teleport(game.PlaceId)
