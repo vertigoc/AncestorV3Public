@@ -31,7 +31,7 @@
 ]]
 
 repeat wait()until game:IsLoaded()and game.Players.LocalPlayer.Character;
-local lib=loadstring(game:HttpGet('https://ancestordevelopment.wtf/ui'))();
+local lib=loadstring(game:HttpGet('https://raw.githubusercontent.com/FindFirstAncestor/AncestorV3Public/main/AncestorUILib'))();
 local requirements={
     ConfigSetup={
         AlwaysDay=false, 
