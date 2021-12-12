@@ -1,0 +1,838 @@
+repeat task.wait()until game:IsLoaded()
+local lib=loadstring(game:HttpGet("https://raw.githubusercontent.com/FindFirstAncestor/AncestorV3Public/main/FPSUI.lua"))();
+local functions={};
+local requirements={
+    ConfigSetup={
+        currentWalkSpeed=24,
+        JumpPower=36,
+        sprintSpeed=14,
+        aimbotSens=1,
+        noclip=false,
+        toggleUI="RightShift",
+        infJump=false,
+        rapidFire=false,
+        noRecoil=false,
+        noMuzzleFlash=false,
+        bulletDrop=false,
+        rapidAim=false,
+        infAmmo=false,
+        wallbang=false,
+        tpGrenades=false,
+        knifeAura=false,
+        weaponVisuals=false,
+        weaponMaterial="ForceField",
+        gunColor1=255,
+        gunColor2=105,
+        gunColor3=180,
+        skinEquipped='Ancestor',
+        weaponSkin=false,
+        silentAim=false,
+        partToShoot='Head',
+        aimbotEnabled=false,
+        useFOV=false,
+        aimbotKey='LeftControl',
+        aimbotPart='Head',
+        FovColor1=255,
+        FovColor2=105,
+        FovColor3=180,
+        FovRadius=60,
+        FovTrans=.8,
+        FovThickness=1,
+        FovVisible=false,
+        visCheck=true,
+        alwaysRadar=false,
+        espPlayers=false,
+        GibEnabled=false,
+        BloodEnabled=false,
+        mapBorders=false,
+    };
+    Booleans={
+        Noclip=false,
+        isEnabled=true,
+    };
+    tables={
+        TS=require(game:GetService("ReplicatedStorage").TS);
+        maps={},
+    };
+    Strings={
+        plrToKill=game.Players.LocalPlayer,
+    };
+    keys={
+        Enum.KeyCode.W,
+        Enum.KeyCode.A,
+        Enum.KeyCode.S,
+        Enum.KeyCode.D,
+        Enum.KeyCode.Space,
+    };
+    services={
+        RunService=game:GetService("RunService"),
+        ReplicatedStorage=game:GetService'ReplicatedStorage',
+        marketplaceService=game:GetService("MarketplaceService"),
+        userInputService=game:GetService("UserInputService"),
+        Lighting=game:GetService("Lighting"),
+        VU=game:GetService("VirtualUser"),
+        teleportService=game:GetService('TeleportService'),
+        gi=game:GetService'GuiService':GetGuiInset();
+    },
+    functions={
+
+    };
+    Remotes={
+        knifeRemote=nil,
+    };
+    connections={
+        main=nil,
+    };
+    LP=game:GetService("Players").LocalPlayer,
+    Players=game:GetService("Players"),
+    Mouse=game:GetService("Players").LocalPlayer:GetMouse();
+    currentCam=workspace.CurrentCamera;
+};
+functions.notify=function(title, text, duration)
+    if requirements.Booleans.isEnabled then
+        game.StarterGui:SetCore("SendNotification",{Title=title,Text=text,Duration=duration});
+    end;
+end;
+local config
+if not pcall(function()readfile("Sigma.cfg")end)then
+    writefile("Sigma.cfg",game:GetService"HttpService":JSONEncode(requirements.ConfigSetup));
+end;
+config=game:GetService"HttpService":JSONDecode(readfile("Sigma.cfg"));
+
+functions.delConfig=function()
+    if readfile("Sigma.cfg") and delfile then
+        delfile("Sigma.cfg")
+        functions.notify("Success","Deleted Config!",4);
+    else
+        functions.notify("Error","Exploit Not Supported, Delete Manually",4);
+    end;
+end;
+functions.saveConfig=function()
+    writefile("Sigma.cfg",game:GetService"HttpService":JSONEncode(config));
+end;requirements.ConfigSetup=config;
+functions.getOldWait=function()
+    requirements.functions.Timer=requirements.tables.TS.Timer.Wait;
+end;
+functions.getOldWait();
+functions.getFolders=function()
+    for _,v in next,game:GetService'ReplicatedStorage':GetChildren()do if v.Name==' 'and#v:GetChildren()>3 then v.Name='Modules'end;end;
+    for _,v in next,game:GetService'ReplicatedStorage'.Modules:GetChildren()do
+        v.Name='';
+        if v:FindFirstChild'Commands'then v.Name='Console'end;
+        local m=require(v);
+        if m.CastGeometryAndEnemies then v.Name='Raycast'end;
+        if m.FireAll then v.Name='Network'end;
+        if m.Lerper then v.Name='Math'end;
+        if m.Modal then v.Name='Input'end;
+        if m.Schedule then v.Name='Timer'end;
+        if m.GetTeams then v.Name='Teams'end;
+        if m.DamageCharacter then v.Name='Damage'end;
+        if m.LoadCharacter then v.Name='Characters'end;
+        if m.Recoil then v.Name='Camera'end;
+        if m.AddProjectile then v.Name='Projectiles'end;
+        if m.Effect then v.Name='Effects'end;
+        if m.Sounds then v.Name='UI'end;
+        if m.CurrentWeapon then v.Name='Menu'end;
+        if m.MaxLevel then v.Name='Levels'end;
+        if m.MoveInput then v.Name='Mobile'end;
+        if m.Paint then v.Name='Skins'end;
+        if m.GivePlayerLoadout then v.Name='Items'end;
+        if m.Attach then v.Name='Charms'end;
+        if m.GetFrame then v.Name='Profiles'end;
+        if m.Apply then v.Name='Stickers'end;
+        if m.Stages then v.Name='Skybox?'end;
+        if m.GetAttachmentIcon then v.Name='No Fucking Idea'end;
+        if m.EquipArms then v.Name='Clothing'end;
+        if m.NameDisplayMode then v.Name='Players'end;
+    end;
+end;functions.getFolders();
+functions.RapidFire=function()
+    requirements.tables.TS.Timer.Wait=function()
+        local start=tick();
+        while requirements.services.RunService.Stepped:Wait()do
+            if 0.012<=tick()-start then
+                break;
+            end;
+        end;
+        return tick()-start;
+    end;
+end;
+functions.fallBackConfig=function()
+    if requirements.services.ReplicatedStorage:FindFirstChild'AncestorV3Configs'then
+        requirements.services.ReplicatedStorage:FindFirstChild'AncestorV3Configs':remove();
+    end;
+    local AncestorV3Configs=requirements.services.ReplicatedStorage:FindFirstChild'Items':Clone();AncestorV3Configs.Name='AncestorV3Configs';AncestorV3Configs.Parent=requirements.services.ReplicatedStorage;
+end;
+functions.isWalking=function()
+    for i,v in next,requirements.keys do
+        if requirements.services.userInputService:IsKeyDown(v)then
+            return v;
+        end;
+    end;
+    return false;
+end;
+functions.fallBackConfig();
+functions.applyWalkSpeed=function(Value)
+    for i,v in next,getgc(true)do
+        if type(v)=='function'and getfenv(v).script==game:GetService("Players").LocalPlayer.PlayerScripts.ControlScript then
+            for g,h in next,getconstants(v)do
+                if h=="Prone"and getinfo(v).name=='WalkingForward'then
+                    for o,k in next,getupvalues(v)do
+                        if o==3 then
+                            functions.getWalkSpeed=v;
+                        end;
+                    end;
+                end;
+            end;
+        end;
+    end;
+end;
+functions.applyWalkSpeed();
+Debounce=false;
+requirements.connections.jumpPower=game:GetService('UserInputService').InputBegan:Connect(function(key,Processed)
+    if key.KeyCode==Enum.KeyCode.Space and not Processed and requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer)and requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer):FindFirstChild'Root'then
+        local Character=requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer);
+        if not requirements.ConfigSetup.infJump and Debounce then return end;
+        Character.Root.Velocity=Vector3.new(Character.Root.Velocity.X,requirements.ConfigSetup.JumpPower,Character.Root.Velocity.Z);
+        if not requirements.ConfigSetup.infJump then
+            Debounce=true;
+            repeat wait()until requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).State.Grounded.Value==true;
+            Debounce=false;
+        end;
+    end;
+end);
+spawn(function()
+    loadstring([[
+    local args={...};
+    local requirements=args[1];
+    local functions=args[2];
+    repeat game:GetService'RunService'.Heartbeat:wait()
+        pcall(function()
+            if requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer)and requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer):FindFirstChild'Root'then
+                local WalkSpeed=requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).Root.CFrame.lookVector;
+                local walkSpeedPower=0;
+                if game:GetService'UserInputService':IsKeyDown(Enum.KeyCode.LeftShift)then
+                    walkSpeedPower=requirements.ConfigSetup.currentWalkSpeed+requirements.ConfigSetup.sprintSpeed;
+                else
+                    walkSpeedPower=requirements.ConfigSetup.currentWalkSpeed;
+                end;
+                if walkSpeedPower>200 then
+                    walkSpeedPower=150;
+                end;
+                if not functions.isWalking()then
+                        requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).State.Stance.Value='Stand'
+                        setupvalue(functions.getWalkSpeed,3,Vector3.new(0,0,0));
+                    elseif functions.isWalking()then
+                    if functions.isWalking()==Enum.KeyCode.W then
+                        setupvalue(functions.getWalkSpeed,3,WalkSpeed*walkSpeedPower);
+                    elseif functions.isWalking()==Enum.KeyCode.S then
+                        setupvalue(functions.getWalkSpeed,3,-WalkSpeed*walkSpeedPower);
+                    end;
+                end;
+            end;
+        requirements.functions.getClosestEnemy();
+        end)
+    until not requirements.Booleans.isEnabled]])(requirements,functions);
+end);
+functions.NotOb=function(destination,ignore)
+    local Origin=requirements.currentCam.CFrame.p;
+    local Hit=workspace.FindPartOnRayWithIgnoreList(workspace,Ray.new(Origin,destination-Origin),ignore);
+    return Hit==nil;
+end;
+functions.getgun=function()
+    for _,model in next,workspace:children()do
+        if model:IsA'Model'and model.Name~='Arms'and model:FindFirstChild'RightHand'then
+            return model;
+        end;
+    end;
+end
+functions.checkVis=function(lpCharacter,enemyCharacter)
+    local Point,OnScreen=requirements.currentCam.WorldToScreenPoint(requirements.currentCam,enemyCharacter.Root.Position);
+    if OnScreen and functions.NotOb(enemyCharacter.Root.Position,{lpCharacter,enemyCharacter,functions.getgun()})then
+        return true;
+    end;
+    return false;
+end;
+requirements.functions.getClosestEnemy=function()
+    local Target=false;
+    local pass=false;
+    local vis=false;
+    local Distance=math.huge;
+    local playerDIST=math.huge;
+    local playerToKill=nil;
+    local player=nil;
+    for _,plr in next,game.Players:GetPlayers()do
+        if not requirements.tables.TS.Teams:ArePlayersFriendly(plr,requirements.LP)and requirements.tables.TS.Characters:GetCharacter(plr)and requirements.tables.TS.Characters:GetCharacter(requirements.LP)and requirements.tables.TS.Characters:GetCharacter(plr):FindFirstChild'Root'and requirements.tables.TS.Characters:GetCharacter(requirements.LP):FindFirstChild'Root'then
+            local enemyCharacter=requirements.tables.TS.Characters:GetCharacter(plr);
+            local lpCharacter=requirements.tables.TS.Characters:GetCharacter(requirements.LP);
+            local magCheck=(lpCharacter.Root.Position-enemyCharacter.Root.Position).magnitude;
+            if enemyCharacter:FindFirstChild('Root')and magCheck<playerDIST then
+                playerDIST=magCheck;
+                playerToKill=enemyCharacter;
+                player=plr;
+            end;
+        end;
+    end;
+    if not playerToKill then return false;end;
+    local Point,OnScreen=requirements.currentCam.WorldToScreenPoint(requirements.currentCam,playerToKill.Root.Position);
+    if not OnScreen then return false;end;
+        if requirements.ConfigSetup.aimbotEnabled and OnScreen or requirements.ConfigSetup.silentAim and OnScreen then
+            if requirements.ConfigSetup.visCheck then
+                if functions.NotOb(playerToKill.Root.Position,{lpCharacter,playerToKill,functions.getgun()})then
+                    vis=true;
+                end;
+            end;
+            if requirements.ConfigSetup.useFOV then
+                local mag=(Vector2.new(Point.X,Point.Y)-Vector2.new(requirements.Mouse.X,requirements.Mouse.Y+requirements.services.gi.Y)).magnitude;
+                if mag<math.min(requirements.Fov.Radius,Distance)then
+                    pass=true;
+                end;
+            end;
+            Target=playerToKill.Body;
+            requirements.Strings.plrToKill=player;
+            if not Target or requirements.ConfigSetup.useFOV and not pass then return false;end;
+            if requirements.ConfigSetup.visCheck and not vis then return false;end;
+        end;
+        requirements.Strings.plrToKill=player;
+    return Target;
+end;
+functions.AimAt=function(Vector2)
+    local VecPos=requirements.currentCam.worldToScreenPoint(requirements.currentCam,Vector2);
+    mousemoverel((VecPos.X-requirements.Mouse.X)/requirements.ConfigSetup.aimbotSens,(VecPos.Y-requirements.Mouse.Y)/requirements.ConfigSetup.aimbotSens);
+end;
+functions.isAiming=function()
+    if not requirements.ConfigSetup.aimbotEnabled then return false end;
+    return requirements.services.userInputService:IsKeyDown(Enum.KeyCode[requirements.ConfigSetup.aimbotKey]);
+end;
+functions.changeTeam=function(team)
+    requirements.tables.TS.Network:Fire("Admin","SetTeam",game.Players:FindFirstChild(tostring(requirements.Strings.PlayerToChange)),team);
+end;
+functions.makeClock=function(mode)
+    if game.CoreGui:FindFirstChild"Stats"then
+        game.CoreGui:FindFirstChild"Stats":remove();
+    end;
+    if mode=="Dark"then
+        color1=Color3.fromRGB(15,15,15);
+        color2=Color3.fromRGB(255,255,255);
+    elseif mode=="Light"then
+        color1=Color3.fromRGB(255,255,255);
+        color2=Color3.fromRGB(0,0,0);
+    end;
+    local Stats=Instance.new('ScreenGui');
+    local FPSFrame=Instance.new('Frame');
+    local UICorner=Instance.new('UICorner');
+    local f1=Instance.new('Frame');
+    local f2=Instance.new('Frame');
+    local FPS=Instance.new('TextLabel');
+    local TimeFrame=Instance.new('Frame');
+    local UICorner_2=Instance.new('UICorner');
+    local f1_2=Instance.new('Frame');
+    local f2_2=Instance.new('Frame');
+    local Time=Instance.new('TextLabel');
+    local DateFrame=Instance.new('Frame');
+    local Date=Instance.new('TextLabel');
+    local f2_3=Instance.new('Frame');
+    local f1_3=Instance.new('Frame');
+    local UICorner_3=Instance.new('UICorner');
+    Stats.Name='Stats';
+    Stats.Parent=game:GetService'CoreGui';
+    Stats.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;
+    FPSFrame.Name='FPSFrame';
+    FPSFrame.Parent=Stats;
+    FPSFrame.Size=UDim2.new(0,40,0,20);
+    FPSFrame.Position=UDim2.new(1,-40,1,-60);
+    FPSFrame.BorderSizePixel=0;
+    FPSFrame.BackgroundColor3=color1;
+    UICorner.Name='UICorner';
+    UICorner.Parent=FPSFrame;
+    UICorner.CornerRadius=UDim.new(0,6);
+    f1.Name='f1';
+    f1.Parent=FPSFrame;
+    f1.Size=UDim2.new(1,0,0,6);
+    f1.Position=UDim2.new(0,0,1,-6);
+    f1.BorderSizePixel=0;
+    f1.BackgroundColor3=color1;
+    f2.Name='f2';
+    f2.Parent=FPSFrame;
+    f2.Size=UDim2.new(0,6,1,0);
+    f2.Position=UDim2.new(1,-6,0,0);
+    f2.BorderSizePixel=0;
+    f2.BackgroundColor3=color1;
+    FPS.Name='FPS';
+    FPS.Parent=FPSFrame;
+    FPS.TextWrapped=true;
+    FPS.ZIndex=2;
+    FPS.BorderSizePixel=0;
+    FPS.BackgroundColor3=Color3.fromRGB(255,255,255);
+    FPS.Size=UDim2.new(1,-2,1,0);
+    FPS.TextSize=14.000;
+    FPS.Text='222';
+    FPS.TextColor3=color2;
+    FPS.Font=Enum.Font.GothamSemibold;
+    FPS.Position=UDim2.new(0,2,0,0);
+    FPS.BackgroundTransparency=1.000;
+    TimeFrame.Name='TimeFrame';
+    TimeFrame.Parent=Stats;
+    TimeFrame.Size=UDim2.new(0,73,0,20);
+    TimeFrame.Position=UDim2.new(1,-73,1,-40);
+    TimeFrame.BorderSizePixel=0;
+    TimeFrame.BackgroundColor3=color1;
+    UICorner_2.Name='UICorner';
+    UICorner_2.Parent=TimeFrame;
+    UICorner_2.CornerRadius=UDim.new(0,6);
+    f1_2.Name='f1';
+    f1_2.Parent=TimeFrame;
+    f1_2.Size=UDim2.new(1,0,0,6);
+    f1_2.Position=UDim2.new(0,0,1,-6);
+    f1_2.BorderSizePixel=0;
+    f1_2.BackgroundColor3=color1;
+    f2_2.Name='f2';
+    f2_2.Parent=TimeFrame;
+    f2_2.Size=UDim2.new(0,6,1,0);
+    f2_2.Position=UDim2.new(1,-6,0,0);
+    f2_2.BorderSizePixel=0;
+    f2_2.BackgroundColor3=color1;
+    Time.Name='Time';
+    Time.Parent=TimeFrame;
+    Time.TextWrapped=true;
+    Time.ZIndex=2;
+    Time.BorderSizePixel=0;
+    Time.BackgroundColor3=Color3.fromRGB(255,255,255);
+    Time.Size=UDim2.new(1,-2,1,0);
+    Time.TextSize=14.000;
+    Time.Text=os.date'%I:%M:%S';
+    Time.TextColor3=color2;
+    Time.Font=Enum.Font.GothamSemibold;
+    Time.Position=UDim2.new(0,2,0,0);
+    Time.BackgroundTransparency=1.000;
+    DateFrame.Name='DateFrame';
+    DateFrame.Parent=Stats;
+    DateFrame.Size=UDim2.new(0,100,0,20);
+    DateFrame.Position=UDim2.new(1,-100,1,-20);
+    DateFrame.BorderSizePixel=0;
+    DateFrame.BackgroundColor3=color1;
+    Date.Name='Date';
+    Date.Parent=DateFrame;
+    Date.TextWrapped=true;
+    Date.ZIndex=2;
+    Date.BorderSizePixel=0;
+    Date.BackgroundColor3=Color3.fromRGB(255,255,255);
+    Date.Size=UDim2.new(1,-2,1,0);
+    Date.TextSize=14.000;
+    Date.Text='Tues, March 10th';
+    Date.TextColor3=color2;
+    Date.Font=Enum.Font.GothamSemibold;
+    Date.Position=UDim2.new(0,2,0,0);
+    Date.BackgroundTransparency=1.000;
+    f2_3.Name='f2';
+    f2_3.Parent=DateFrame;
+    f2_3.Size=UDim2.new(0,6,1,0);
+    f2_3.Position=UDim2.new(1,-6,0,0);
+    f2_3.BorderSizePixel=0;
+    f2_3.BackgroundColor3=color1;
+    f1_3.Name='f1';
+    f1_3.Parent=DateFrame;
+    f1_3.Size=UDim2.new(1,0,0,6);
+    f1_3.Position=UDim2.new(0,0,1,-6);
+    f1_3.BorderSizePixel=0;
+    f1_3.BackgroundColor3=color1;
+    UICorner_3.Name='UICorner';
+    UICorner_3.Parent=DateFrame;
+    local connection,connection2
+    UICorner_3.CornerRadius=UDim.new(0,6)local s,f,m,t,l=tick(),{},math.fmod,tonumber;
+    local function o(n)return n..(({'st','nd','rd'})[m((m((n+90),100)-10),10)]or'th')end;
+    local connection=game:GetService'RunService'.Heartbeat:connect(function()
+        Time.Text=os.date'%I:%M:%S'Date.Text=os.date'%a, %b '..o(t(os.date'%d'))
+        l=tick()for i=#f,1,-1 do f[i+1]=(f[i]>=l-1)and f[i]or nil;end;
+        f[1]=l;FPS.Text=math.floor((tick()-s>=1 and#f)or(#f/(tick()-s)));
+    end)
+    connection2=game.CoreGui.ChildRemoved:Connect(function(b)
+        if b.Name=="Stats"then
+            connection:Disconnect();
+            connection=nil;
+            connection2:Disconnect();
+            connection2=nil;
+        end;
+    end)
+end;
+functions.makeClock("Dark")
+functions.applyModification=function(type,bool)
+    for _,v in next,requirements.services.ReplicatedStorage.Items:children()do
+        if v:FindFirstChild'Config'then
+            fallBackModule=require(game.ReplicatedStorage.AncestorV3Configs[v.Name].Config);
+            Module=require(v.Config);
+            if type=="MuzzleFlash"then
+                if Module.Projectile then
+                    if bool then
+                        Module.Projectile.Silenced=true;
+                    else
+                        Module.Projectile.Silenced=fallBackModule.Projectile.Silenced;
+                    end;
+                end;
+            end;
+            if type=='Wallbang'then
+                if bool==true then
+                    setupvalue(requirements.tables.TS.Raycast.CastGeometryAndEnemies,1,nil);
+                    setupvalue(requirements.tables.TS.Raycast.CastGeometryAndEnemies,2,nil);
+                else
+                    setupvalue(requirements.tables.TS.Raycast.CastGeometryAndEnemies,1,workspace.Geometry);
+                    setupvalue(requirements.tables.TS.Raycast.CastGeometryAndEnemies,2,workspace.Terrain);
+                end;
+            end;
+            if type=='RapidAim'then
+                if Module.Aim and fallBackModule.Aim then
+                    if bool==true then
+                        Module.Aim.AimTime=0
+                    else
+                        Module.Aim.AimTime=fallBackModule.Aim.AimTime
+                    end;
+                end;
+            elseif type=='NoRecoil'then
+                if Module.Recoil and Module.Recoil.Default then
+                    if bool==true then
+                        Module.Recoil.Default.WeaponRotation=Vector3.new();
+                        Module.Recoil.Default.WeaponRotationVariance=Vector3.new();
+                        Module.Recoil.Default.WeaponMovement=Vector3.new();
+                        Module.Recoil.Default.WeaponMovementVariance=Vector3.new();
+                        Module.Recoil.Default.WeaponMovementSpeed=0;
+                        Module.Recoil.Default.WeaponRotationSpeed=0;
+                        Module.Recoil.Default.WeaponAimScale=0;
+                        Module.Recoil.Default.WeaponMovementAimScale=0;
+                        Module.Recoil.Default.WeaponRotationAimScale=0;
+                        Module.Recoil.Default.WeaponScale=0;
+                        Module.Recoil.Default.WeaponSnapback=0;
+                        Module.Recoil.Default.CameraRotation=Vector3.new();
+                        Module.Recoil.Default.CameraRotationVariance=Vector3.new();
+                        Module.Recoil.Default.CameraSpeed=0;
+                        Module.Recoil.Default.CameraAimScale=0;
+                        Module.Recoil.Default.CameraScale=0;
+                        Module.Recoil.Default.RecoilMovement=Vector2.new();
+                        Module.Recoil.Default.RecoilMovementVariance=Vector2.new();
+                        Module.Recoil.Default.RecoilMovementTime=0;
+                        Module.Recoil.Default.RecoilRecenterTime=0;
+                        Module.Recoil.Default.RecoilSpeed=0;
+                        Module.Recoil.Default.RecoilAimScale=0;
+                        Module.Recoil.Default.RecoilScale=0;
+                        Module.Recoil.Default.RecoilRecenter=0;
+                        Module.Recoil.Default.RecoilCrouchScale=0;
+                        Module.Recoil.Default.RecoilProneScale=0;
+                    else
+                        Module.Recoil.Default.WeaponRotation=fallBackModule.Recoil.Default.WeaponRotation;
+                        Module.Recoil.Default.WeaponRotationVariance=fallBackModule.Recoil.Default.WeaponRotationVariance;
+                        Module.Recoil.Default.WeaponMovement=fallBackModule.Recoil.Default.WeaponMovement;
+                        Module.Recoil.Default.WeaponMovementVariance=fallBackModule.Recoil.Default.WeaponMovementVariance;
+                        Module.Recoil.Default.WeaponMovementSpeed=fallBackModule.Recoil.Default.WeaponMovementSpeed;
+                        Module.Recoil.Default.WeaponRotationSpeed=fallBackModule.Recoil.Default.WeaponRotationSpeed;
+                        Module.Recoil.Default.WeaponAimScale=fallBackModule.Recoil.Default.WeaponAimScale;
+                        Module.Recoil.Default.WeaponMovementAimScale=fallBackModule.Recoil.Default.WeaponMovementAimScale;
+                        Module.Recoil.Default.WeaponRotationAimScale=fallBackModule.Recoil.Default.WeaponRotationAimScale;
+                        Module.Recoil.Default.WeaponScale=fallBackModule.Recoil.Default.WeaponScale;
+                        Module.Recoil.Default.WeaponSnapback=fallBackModule.Recoil.Default.WeaponSnapback;
+                        Module.Recoil.Default.CameraRotation=fallBackModule.Recoil.Default.CameraRotation;
+                        Module.Recoil.Default.CameraRotationVariance=fallBackModule.Recoil.Default.CameraRotationVariance;
+                        Module.Recoil.Default.CameraSpeed=fallBackModule.Recoil.Default.CameraSpeed;
+                        Module.Recoil.Default.CameraAimScale=fallBackModule.Recoil.Default.CameraAimScale;
+                        Module.Recoil.Default.CameraScale=fallBackModule.Recoil.Default.CameraScale;
+                        Module.Recoil.Default.RecoilMovement=fallBackModule.Recoil.Default.RecoilMovement;
+                        Module.Recoil.Default.RecoilMovementVariance=fallBackModule.Recoil.Default.RecoilMovementVariance;
+                        Module.Recoil.Default.RecoilMovementTime=fallBackModule.Recoil.Default.RecoilMovementTime;
+                        Module.Recoil.Default.RecoilRecenterTime=fallBackModule.Recoil.Default.RecoilRecenterTime;
+                        Module.Recoil.Default.RecoilSpeed=fallBackModule.Recoil.Default.RecoilSpeed;
+                        Module.Recoil.Default.RecoilAimScale=fallBackModule.Recoil.Default.RecoilAimScale;
+                        Module.Recoil.Default.RecoilScale=fallBackModule.Recoil.Default.RecoilScale;
+                        Module.Recoil.Default.RecoilRecenter=fallBackModule.Recoil.Default.RecoilRecenter;
+                        Module.Recoil.Default.RecoilCrouchScale=fallBackModule.Recoil.Default.RecoilCrouchScale;
+                        Module.Recoil.Default.RecoilProneScale=fallBackModule.Recoil.Default.RecoilProneScale;
+                    end;
+                end;
+            end;
+        end;
+    end;
+end;
+functions.getWeapon=function()
+    for i,v in next,workspace:children()do
+        if requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer)and tostring(v.Name)==tostring(requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).Backpack.Equipped.Value)and v:FindFirstChild'RightHand'then
+            return v;
+        end;
+    end;
+end;
+functions.getMaps=function()
+    requirements.tables.TS.Network:Fire("Admin","ListMaps");
+    wait(.3)
+    for i,v in next,requirements.LP.PlayerGui.TortoiseshellGui.Console.Messages:children()do
+        if v:FindFirstChild'TextLabel'and v.TextLabel.TextColor3==Color3.fromRGB(255,255,255)and not table.find(requirements.tables.maps,tostring(v.TextLabel.Text))then
+            table.insert(requirements.tables.maps,tostring(v.TextLabel.Text))
+        end;
+    end;
+end;
+spawn(function()functions.getMaps();end);
+functions.applySkin=function(skinType)
+    if functions.getWeapon()and requirements.Booleans.gunSkin then
+        gun=functions.getWeapon()
+        if skinType=='Ancestor'then
+            local alien=require(game:GetService'ReplicatedStorage'.Modules.Skins.Skins.Alien);
+            alien:Apply(gun)
+            local damGold=require(game:GetService'ReplicatedStorage'.Modules.Skins.Skins._Challenges['Damascus Gold']);
+            damGold:Apply(gun);
+            return;
+        end;
+        for i,v in next,game:GetService'ReplicatedStorage'.Modules.Skins.Skins:GetDescendants()do
+            if v.Name==skinType and v:IsA'ModuleScript'then
+                v=require(v);
+                v:Apply(gun);
+            end;
+        end;
+    end;
+end;
+functions.makeBox=function(part1, size, part2, colour)
+    local box=Instance.new("BoxHandleAdornment", part1);box.Size=size;box.Adornee=part2;box.ZIndex=5;box.AlwaysOnTop=true;box.Color3=colour;box.Transparency=.3;
+end;
+functions.getKnife=function()
+    pcall(function()
+        for _,Knife in next,requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).Backpack.Items:children()do
+            if Knife:FindFirstChild'Events'and Knife.Events:FindFirstChild'Stab'and tostring(requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).Backpack.Equipped.Value)==tostring(Knife.Name)then
+            requirements.Strings.Knife=Knife;
+            end;
+        end;
+        return false;
+    end);
+end;
+for i,v in next,game.ReplicatedStorage:GetDescendants()do
+    if v.Name=='Item_Melee'then
+        requirements.Remotes.knifeRemote=v;
+    end;
+end;
+functions.knifePlayer=function(part)
+    functions.getKnife()
+    requirements.Remotes.knifeRemote:FireServer('Stab',requirements.Strings.Knife,part,Vector3.new(227, 342, 279),Vector3.new(3, -1, 4))
+end
+functions.getPlayers=function()
+    local players={};
+    for _,plr in next,game.Players:GetPlayers()do
+        if not table.find(players,tostring(plr))then
+            table.insert(players,tostring(plr));
+        end;
+    end;
+    return players;
+end;
+functions.removeESP=function()
+    for _,plr in next,game.Players:GetPlayers()do
+        if not requirements.tables.TS.Teams:ArePlayersFriendly(plr,requirements.LP)and requirements.tables.TS.Characters:GetCharacter(plr)then
+            local Character=requirements.tables.TS.Characters:GetCharacter(plr);
+            if Character:FindFirstChild'Body'then
+                for _,bodyPart in next,Character.Body:children()do
+                    if bodyPart:IsA'BasePart'and bodyPart:FindFirstChild'BoxHandleAdornment'then
+                            pcall(function()
+                            bodyPart:FindFirstChild'BoxHandleAdornment':remove();
+                            end);
+                    end;
+                end;
+            end;
+        end;
+    end;
+end;
+functions.alwaysRadar=function()
+    while wait(1)do
+        if not requirements.ConfigSetup.alwaysRadar then break;end;
+        for _,plr in next,game.Players:GetPlayers()do
+            if not requirements.tables.TS.Teams:ArePlayersFriendly(plr,game.Players.LocalPlayer)and requirements.tables.TS.Characters:GetCharacter(plr)and requirements.tables.TS.Characters:GetCharacter(plr):FindFirstChild'Body'then
+                requirements.tables.TS.UI.Events.RadarEnemy:Fire(tick(),requirements.tables.TS.Characters:GetCharacter(plr).Body.Head.CFrame.p)
+            end;
+        end;
+    end;
+end;
+functions.noBulletDrop=function()
+    for i,v in next,getgc(true)do
+        if type(v)=='table'and rawget(v,'Gravity')and rawget(v,'Speed')then
+            v.Gravity=0
+        end;
+    end;
+end;
+functions.doFov=function()
+    local Fov=Drawing.new'Circle';
+    local mouse=requirements.LP:GetMouse();
+    Fov.Visible=false;
+    Fov.Filled=false;
+    Fov.Thickness=requirements.ConfigSetup.FovThickness;
+    Fov.Radius=requirements.ConfigSetup.FovRadius;
+    Fov.NumSides=100;
+    Fov.Transparency=requirements.ConfigSetup.FovTrans;
+    Fov.Color=Color3.fromRGB(requirements.ConfigSetup.FovColor1,requirements.ConfigSetup.FovColor2,requirements.ConfigSetup.FovColor3)
+    Fov.Position=Vector2.new(mouse.X,mouse.Y+requirements.services.gi.Y);
+    requirements.Fov=Fov;
+end;
+functions.doFov();
+functions.lowTextures=function(part)
+    if part:IsA("BasePart") then
+        if part.Material~=Enum.Material.Neon then
+            part.Material=Enum.Material.SmoothPlastic;
+            return;
+        end;
+    elseif(part:IsA("Decal")or part:IsA("Texture"))and part.Parent.Transparency~=1 then
+        part:Destroy();
+    end;
+end;
+functions.noBorders=function()
+    game.ReplicatedStorage:WaitForChild("Round").InProgress.Value=false;
+    for _,v in next,workspace.NonProjectileGeometry:children()do
+        v:remove();
+    end;game.ReplicatedStorage:WaitForChild("Round").InProgress.Value=true;
+end;
+functions.applyLowTextures=function()
+    local Geometry=workspace:WaitForChild("Geometry");
+    local NonGeometry=workspace:WaitForChild("NonGeometry");
+    local NonProjectileGeometry=workspace:WaitForChild("NonProjectileGeometry");
+    game.ReplicatedStorage:WaitForChild("Round").InProgress.Value=false;
+    for _,instance in next,Geometry:GetDescendants()do
+        functions.lowTextures(instance);
+    end;
+    for _,instance in next,NonGeometry:GetDescendants()do
+        functions.lowTextures(instance);
+    end;
+    for _,instance in next,NonProjectileGeometry:GetDescendants()do
+        functions.lowTextures(instance);
+    end;
+    game.ReplicatedStorage:WaitForChild("Round").InProgress.Value=true;
+end;
+spawn(function()
+    loadstring([[
+    local args={...};
+    local requirements=args[1];
+    spawn(function()
+        repeat game:GetService'RunService'.Stepped:wait()
+            pcall(function()
+                if requirements.Fov.Visible then
+                    requirements.Fov.Position=Vector2.new(requirements.LP:GetMouse().X,requirements.LP:GetMouse().Y+requirements.services.gi.Y);
+                    requirements.Fov.Radius=requirements.ConfigSetup.FovRadius
+                    requirements.Fov.Color=Color3.fromRGB(requirements.ConfigSetup.FovColor1,requirements.ConfigSetup.FovColor2,requirements.ConfigSetup.FovColor3)
+                    requirements.Fov.Thickness=requirements.ConfigSetup.FovThickness;
+                end;
+                if requirements.tables.TS.Characters:GetCharacter(requirements.LP)then
+                    if requirements.Booleans.Noclip then
+                        requirements.tables.TS.Characters:GetCharacter(requirements.LP).PrimaryPart.CanCollide=false;
+                    else
+                        requirements.tables.TS.Characters:GetCharacter(requirements.LP).PrimaryPart.CanCollide=true;
+                    end;
+                end;
+                if requirements.Booleans.gunVisuals then
+                    for i,v in next,workspace:children()do
+                        if tostring(v.Name)==tostring(requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).Backpack.Equipped.Value)and v:FindFirstChild'RightHand'then
+                            for k,o in next,v.Body:GetDescendants()do
+                                if o:IsA'MeshPart'or o:IsA'BasePart'then
+                                    o.BrickColor=BrickColor.new(Color3.fromRGB(requirements.ConfigSetup.gunColor1,requirements.ConfigSetup.gunColor2,requirements.ConfigSetup.gunColor3));
+                                    o.Material=Enum.Material[requirements.ConfigSetup.weaponMaterial];
+                                end;
+                            end;
+                        end;
+                    end;
+                end;
+            end)
+        until not requirements.Booleans.isEnabled;
+    end);
+    local mt=getrawmetatable(game);
+    local old=mt.__namecall;
+    setreadonly(mt, false);
+    mt.__namecall=newcclosure(function(self,...)
+        local method=getnamecallmethod();
+        local argss={...};
+        if method=="FireServer"and tostring(self)=='Projectiles'and requirements.Booleans.silentAim and requirements.tables.TS.Characters:GetCharacter(requirements.Strings.plrToKill) and requirements.tables.TS.Characters:GetCharacter(requirements.Strings.plrToKill):FindFirstChild'Hitbox'then
+            rawset(argss,3,requirements.tables.TS.Characters:GetCharacter(requirements.Strings.plrToKill).Hitbox[requirements.ConfigSetup.partToShoot].CFrame.p);
+            rawset(argss,4,requirements.tables.TS.Characters:GetCharacter(requirements.Strings.plrToKill).Hitbox[requirements.ConfigSetup.partToShoot])
+            rawset(argss,5,Vector3.new())
+            rawset(argss,6,requirements.tables.TS.Characters:GetCharacter(requirements.Strings.plrToKill))   
+        end;setnamecallmethod(method);
+        return old(self,unpack(argss));
+    end)]])(requirements);
+end);
+local Window=lib.CreateLib("Sigma =^w^=","BloodTheme");
+local localTab=Window:NewTab("LocalPlayer");
+local localSection=localTab:NewSection("Humanoid Options");
+localSection:NewSlider("WalkSpeed","Changes Your Character's Walkspeed",120,24,requirements.ConfigSetup.currentWalkSpeed,function(WlkSpd)requirements.ConfigSetup.currentWalkSpeed=WlkSpd;end);
+localSection:NewSlider("SprintSpeed","Changes Your Character's SprintSpeed",120,14,requirements.ConfigSetup.sprintSpeed,function(WlkSpd)requirements.ConfigSetup.sprintSpeed=WlkSpd;end);
+localSection:NewSlider("JumpPower","Changes Your Character's JumpPower",300,36,requirements.ConfigSetup.JumpPower,function(JmpPwr)requirements.ConfigSetup.JumpPower=JmpPwr;end);
+localSection:NewToggle("Noclip","Allows You To Walk Through Walls",requirements.ConfigSetup.noclip,function(state)requirements.ConfigSetup.noclip=state;requirements.Booleans.Noclip=state;end);
+localSection:NewToggle("Infinite Jump","Allows You To Jump Infinitely",requirements.ConfigSetup.infJump,function(state)requirements.ConfigSetup.infJump=state;requirements.Booleans.infJump=state;end);
+local gunTab=Window:NewTab("Weapons");
+local gunSection=gunTab:NewSection("Gun Options");
+gunSection:NewToggle("Rapid Fire","Makes Your Gun Shoot Faster",requirements.ConfigSetup.rapidFire,function(state)requirements.ConfigSetup.rapidFire=state;if state then functions.RapidFire();return;end;requirements.tables.TS.Timer.Wait=requirements.functions.Timer;end);
+gunSection:NewToggle("No Recoil","Makes Your Gun A Lazer",requirements.ConfigSetup.noRecoil,function(state)requirements.ConfigSetup.noRecoil=state;functions.applyModification('NoRecoil',state);end);
+gunSection:NewToggle("No Muzzle Flash","Removes Muzzle Flash",requirements.ConfigSetup.noMuzzleFlash,function(state)requirements.ConfigSetup.noMuzzleFlash=state;functions.applyModification('MuzzleFlash',state);end);
+gunSection:NewToggle("No Bullet Drop","Removes Bullet Drop",requirements.ConfigSetup.bulletDrop,function(state)requirements.ConfigSetup.bulletDrop=state;functions.noBulletDrop();end);
+gunSection:NewToggle("Rapid Aim","Aim Down Sight Faster",requirements.ConfigSetup.rapidAim,function(state)requirements.ConfigSetup.rapidAim=state;functions.applyModification('RapidAim',state);end);
+gunSection:NewToggle("Infinite Ammo","Essientally No Reload",requirements.ConfigSetup.infAmmo,function(state)requirements.ConfigSetup.infAmmo=state;if state then loadstring([[local args={...};local requirements=args[1];requirements.connections.infAmmo=requirements.services.RunService.Heartbeat:Connect(function()pcall(function()if requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer)then for _,weapon in next,requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).Backpack.Items:children()do if weapon:FindFirstChild'State'and weapon.State:FindFirstChild'FireMode'then if requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer)then for i,v in next,requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).Backpack.Items:children()do if tostring(v)==tostring(requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).Backpack.Equipped.Value)then game:GetService("ReplicatedStorage").Modules.Network:FindFirstChild("").Item_Paintball:FireServer("Reload",v)end;end;end;weapon.State.Ammo.Value=22;weapon.State.Ammo.Server.Value=22;end;end;end;end);end)]])(requirements);return;end;pcall(function()requirements.connections.infAmmo:Disconnect();requirements.connections.infAmmo=nil;end);end);
+gunSection:NewToggle("Wallbang","Allows You To Shoot Through 1 To 2 Walls Max",requirements.ConfigSetup.wallbang,function(state)requirements.ConfigSetup.wallbang=state;functions.applyModification("Wallbang",state);end);
+local grenadeSection=gunTab:NewSection("Grenade Options");
+grenadeSection:NewToggle("Teleport Grenades","Teleports Grenades To The Closest Enemy",requirements.ConfigSetup.tpGrenades,function(state)requirements.ConfigSetup.tpGrenades=state;if not state then pcall(function()requirements.connections.nadeTP:Disconnect();requirements.connections.nadeTP=nil;end)return;end;requirements.connections.nadeTP=workspace:FindFirstChild'Throwables'.ChildAdded:Connect(function(nade)pcall(function()repeat wait()until nade:FindFirstChild('Body')and nade:FindFirstChild('Owner')if tostring(nade.Owner.Value)==tostring(game.Players.LocalPlayer)then repeat game:GetService'RunService'.Stepped:wait();nade.Body.BodyPrimary.CFrame=requirements.tables.TS.Characters:GetCharacter(requirements.Strings.plrToKill).Body.RightLeg.CFrame;until not nade;end;end);end);end);
+local knifeSection=gunTab:NewSection("Knife Options");
+knifeSection:NewToggle("Knife Aura","Automatically Knives Players Close To You",requirements.ConfigSetup.knifeAura,function(state)requirements.ConfigSetup.knifeAura=state;if state then requirements.connections.knifeAura=game:GetService'RunService'.Stepped:Connect(function()xpcall(function()for _,plr in next,game.Players:GetPlayers()do if not requirements.tables.TS.Teams:ArePlayersFriendly(plr,requirements.LP)and requirements.tables.TS.Characters:GetCharacter(plr)and requirements.tables.TS.Characters:GetCharacter(plr):FindFirstChild'Body'then local Character=requirements.tables.TS.Characters:GetCharacter(plr).Body;if requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer)and(Character.Head.CFrame.p-requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).Body.Head.CFrame.p).Magnitude<50 then functions.knifePlayer(Character.Parent.Hitbox.Head)end;end;end;end,warn);end);return;end;pcall(function()requirements.connections.knifeAura:Disconnect();requirements.connections.knifeAura=nil;end)end);
+local visualSection=gunTab:NewSection("Weapon Visual Options");
+visualSection:NewToggle("Enable Weapon Visuals","Enables Weapon Visual Mods",requirements.ConfigSetup.weaponVisuals,function(state)requirements.ConfigSetup.weaponVisuals=state;requirements.Booleans.gunVisuals=state;end);
+visualSection:NewDropdown(requirements.ConfigSetup.weaponMaterial,"This Changes The Material Of Your Weapon.",{"Plastic","Wood","Slate","Concrete","CorrodedMetal","DiamondPlate","Foil","Grass","Ice","Marble","Granite","Brick","Pebble","Sand","Fabric","SmoothPlastic","Metal","WoodPlanks","Cobblestone","Air","Water","Rock","Glacier","Snow","Sandstone","Mud","Basalt","Ground","CrackedLava","Neon","Glass","Asphalt","LeafyGrass","Salt","Limestone","Pavement","ForceField"},function(material)requirements.ConfigSetup.weaponMaterial=material;end);
+visualSection:NewColorPicker("Weapon Color","This Changes The Color Of Your Weapon.",Color3.fromRGB(requirements.ConfigSetup.gunColor1,requirements.ConfigSetup.gunColor2,requirements.ConfigSetup.gunColor3),function(Value)requirements.ConfigSetup.gunColor1,requirements.ConfigSetup.gunColor2,requirements.ConfigSetup.gunColor3=Value.R*255,Value.G*255,Value.B*255;end);
+local skinsSection=gunTab:NewSection("Weapon Skins Options");
+skinsSection:NewToggle("Enable Weapon Skins","Enables Weapon Skins",requirements.ConfigSetup.weaponSkin,function(state)requirements.ConfigSetup.weaponSkin=state;requirements.Booleans.gunSkin=state;if not state then pcall(function()requirements.connections.gunSkin:Disconnect();requirements.connections.gunSkin=nil;end);return;end;requirements.connections.gunSkin=workspace.ChildAdded:Connect(function(v)pcall(function()if tostring(v.Name)==tostring(requirements.tables.TS.Characters:GetCharacter(game.Players.LocalPlayer).Backpack.Equipped.Value) and v:FindFirstChild"RightHand"then functions.applySkin(requirements.ConfigSetup.skinEquipped)end;end);end);functions.applySkin(requirements.ConfigSetup.skinEquipped);end);
+skinsSection:NewTextBox("Weapon Skin", "Change Your Weapon Skin(CS)",function(txt)requirements.ConfigSetup.skinEquipped=txt;functions.applySkin(requirements.ConfigSetup.skinEquipped)end,requirements.ConfigSetup.skinEquipped)
+local aimbotTab=Window:NewTab("Aimbot");
+local aimSection=aimbotTab:NewSection("Silent Aim Options");
+aimSection:NewToggle("Silent Aim","Automatically Hits Target",requirements.ConfigSetup.silentAim,function(state)requirements.ConfigSetup.silentAim=state;requirements.Booleans.silentAim=state;end);
+aimSection:NewDropdown(requirements.ConfigSetup.partToShoot,"Select What Body Part To Shoot At",{'Head',"Abdomen","Neck","Chest","Hip","RightArm","LeftArm","RightLeg","LeftLeg"},function(option)requirements.ConfigSetup.partToShoot=option;end);
+local aimSection=aimbotTab:NewSection("Aimbot Options");
+aimSection:NewToggle("Aimbot","Automatically Snaps To Target",requirements.ConfigSetup.aimbotEnabled,function(state)requirements.ConfigSetup.aimbotEnabled=state;if not state then pcall(function()requirements.connections.aimbot:Disconnect();requirements.connections.aimbot=nil;end)return;end;requirements.connections.aimbot=game:GetService'RunService'.Stepped:Connect(function()if functions.isAiming()and requirements.functions.getClosestEnemy()then functions.AimAt(requirements.functions.getClosestEnemy()[requirements.ConfigSetup.aimbotPart].CFrame.p);end;end)end);
+aimSection:NewKeybind("Aimbot Key", "Changes The Key Your Aimbot Is Bound To",Enum.KeyCode[requirements.ConfigSetup.aimbotKey],function(key)requirements.ConfigSetup.aimbotKey=key;end);
+aimSection:NewSlider("Aimbot Sensitivity","Changes Your Aimbot's Sensitivity",10,1,requirements.ConfigSetup.aimbotSens,function(Sens)requirements.ConfigSetup.aimbotSens=Sens;end);
+aimSection:NewDropdown(requirements.ConfigSetup.aimbotPart,"Select What Body Part To Shoot At",{'Head',"Abdomen","Neck","Chest","Hip","RightArm","LeftArm","RightLeg","LeftLeg"},function(option)requirements.ConfigSetup.aimbotPart=option;end);
+local aimSection=aimbotTab:NewSection("Other Options");
+aimSection:NewToggle("Visibility Check","Checks If Target Is Visible",requirements.ConfigSetup.visCheck,function(state)requirements.ConfigSetup.visCheck=state;end);
+local aimSection=aimbotTab:NewSection("FOV Options");
+aimSection:NewToggle("FOV","Uses FOV For Aimbot And Silent Aim",requirements.ConfigSetup.FovVisible,function(state)requirements.ConfigSetup.FovVisible=state;requirements.Fov.Visible=state;end);
+aimSection:NewToggle("Use FOV","Uses FOV For Aimbot And Silent Aim Regardless Of FOV Visibility",requirements.ConfigSetup.useFOV,function(state)requirements.ConfigSetup.useFOV=state;end);
+aimSection:NewSlider("FOV Size","Changes Your FOV Size",600,30,requirements.ConfigSetup.FovRadius,function(Size)requirements.ConfigSetup.FovRadius=Size;end);
+aimSection:NewSlider("FOV Thickness","Changes Your FOV Thickness",10,1,requirements.ConfigSetup.FovThickness,function(Thickness)requirements.ConfigSetup.FovThickness=Thickness;end);
+aimSection:NewColorPicker("FOV Color","This Changes The Color Of Your FOV.",Color3.fromRGB(requirements.ConfigSetup.FovColor1,requirements.ConfigSetup.FovColor2,requirements.ConfigSetup.FovColor3),function(Value)requirements.ConfigSetup.FovColor1,requirements.ConfigSetup.FovColor2,requirements.ConfigSetup.FovColor3=Value.R*255,Value.G*255,Value.B*255;end);
+local gameTab=Window:NewTab("Game");
+local gameSection=gameTab:NewSection("Game Options");
+gameSection:NewButton("Redeem All Codes","Redeems All Currently Available Codes",function()local codes={'mbu','juke','blue','doodledarko','fr0gs','godstatus','Huz_Gaming','notvirtuo0z','gun','lecton','mulletmafia','pet','r2','ruddevmedia','syn','xtrnal','Z_33','zesty','zylic','adoptme','doge','viking','Unicorn','KACHING','theboys'};for i,v in next,game.ReplicatedStorage:GetDescendants()do if v.Name=='Codes'and v.Parent:FindFirstChildOfClass'RemoteFunction'then codeRemote=v;end;end;for i,v in next,codes do codeRemote:InvokeServer('Redeem',tostring(v));end;end);
+gameSection:NewButton("No Textures","Removes All Texturs In The Current Map",function()functions.applyLowTextures();end);
+gameSection:NewToggle("ESP","Allows You To See Players Through Walls",requirements.ConfigSetup.espPlayers,function(state)requirements.ConfigSetup.espPlayers=state;if not state then functions.removeESP();end;spawn(function()while wait(.2)do if not requirements.ConfigSetup.espPlayers then functions.removeESP() break;end;for _, plr in next, game.Players:GetPlayers()do if not requirements.tables.TS.Teams:ArePlayersFriendly(plr,requirements.LP)and requirements.tables.TS.Characters:GetCharacter(plr)then local Character=requirements.tables.TS.Characters:GetCharacter(plr)if Character:FindFirstChild'Body'then for _,bodyPart in next,Character.Body:children()do if bodyPart:IsA'BasePart'and not bodyPart:FindFirstChild'BoxHandleAdornment'then functions.makeBox(bodyPart,bodyPart.Size,bodyPart,Color3.fromRGB(255,0,0))end;end;end;end;end;end;end)end);
+gameSection:NewToggle("Always Radar","Alerts You Of Enemy Positions On The Minimap",requirements.ConfigSetup.alwaysRadar,function(state)requirements.ConfigSetup.alwaysRadar=state;spawn(function()functions.alwaysRadar()end);end);
+gameSection:NewToggle("Players Explode Upon Death","Explodes Players Upon Death",requirements.ConfigSetup.GibEnabled,function(state)requirements.tables.TS.Characters.GibEnabled=state;end);
+gameSection:NewToggle("Blood Effects","Enables Blood Effects",requirements.ConfigSetup.BloodEnabled,function(state)requirements.tables.TS.Effects.Settings.BloodEnabled=state;end);
+gameSection:NewToggle("No Map Borders","Deletes Map Borders",requirements.ConfigSetup.mapBorders,function(state)requirements.ConfigSetup.mapBorders=state;if state then spawn(function()repeat wait(5)pcall(function()functions.noBorders();end)until not requirements.ConfigSetup.mapBorders;end);end;end);
+local privateTab=Window:NewTab("Private Server");
+local privateSection=privateTab:NewSection("Change Player's Team");
+local plrList=privateSection:NewDropdown("Select Player","",{unpack(functions.getPlayers())},function(plr)requirements.Strings.PlayerToChange=plr;functions.changeTeam(team);end);
+privateSection:NewDropdown("Team","This Changes The Team Of The Selected Player.",{"Omega","Beta"},function(team)functions.changeTeam(team);end);
+local privateSection=privateTab:NewSection("Change Map");
+repeat wait()until requirements.tables.maps[1];
+privateSection:NewDropdown("Map","This Changes The Map",{unpack(requirements.tables.maps)},function(map)requirements.tables.TS.Network:Fire("Admin","LoadMap",map);end);
+local privateSection=privateTab:NewSection("Change Gamemode");
+privateSection:NewDropdown("Gamemode","This Changes The Gamemode",{"TDM","KOTH","Gun Game","Randomizer"},function(mode)requirements.tables.TS.Network:Fire("Admin","SetMode",mode);end);
+local privateSection=privateTab:NewSection("Kick Players");
+local kickList=privateSection:NewDropdown("Player","Kicks The Selected Player",{unpack(functions.getPlayers())},function(plr)requirements.tables.TS.Network:Fire("Admin","Kick",game.Players:FindFirstChild(tostring(plr)));end);
+-- spawn(function()repeat wait(5)plrList:Refresh(functions.getPlayers())until not plrList;repeat wait(5)kickList:Refresh(functions.getPlayers())until not kickList;end);
+local settingsTab=Window:NewTab("Settings");
+local settingsSection=settingsTab:NewSection("Config Players");
+settingsSection:NewButton("Save Config","Saves Your Config",function()functions.saveConfig();end);
+local gameSection=settingsTab:NewSection("Made By Ancestor =^w^=");
+game.CoreGui.ChildRemoved:Connect(function(b)
+    if tostring(b)=="Sigma"then
+    pcall(function()
+            requirements.Booleans.isEnabled=false;requirements.ConfigSetup.silentAim=false;requirements.ConfigSetup.espPlayers=false;
+            functions.applyModification('NoRecoil',false);
+            functions.applyModification('RapidAim',false);
+            requirements.Fov:Remove();
+            functions.removeESP();
+            requirements.tables.TS.Timer.Wait=requirements.functions.Timer;
+            workspace.CurrentCamera.FieldOfView=70;
+            if game.CoreGui:FindFirstChild"Stats"then
+                game.CoreGui:FindFirstChild"Stats":remove();
+            end;
+        end);
+        for _,connection in next,requirements.connections do
+            if typeof(connection)=="RBXScriptConnection"then
+                connection:Disconnect();
+                connection=nil;
+            end;
+        end;
+    end;
+end)print'Loaded Sigma =^w^=';
