@@ -1,6 +1,6 @@
 local lib = {}
-if game.Players.LocalPlayer.PlayerGui:FindFirstChild'Ancestor'then 
-    game.Players.LocalPlayer.PlayerGui.Ancestor:Destroy()
+if game.CoreGui:FindFirstChild'Ancestor'then 
+     game.CoreGui.Ancestor:Destroy()
 end
 
 function lib:Create(type, proprieties)
