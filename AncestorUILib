@@ -1524,10 +1524,10 @@ function lib:Main()
 	end
 
 	main.Close.MouseButton1Click:Connect(function()
-		game.Players.LocalPlayer.PlayerGui.Ancestor:Destroy()
+		game.CoreGui.Ancestor:Destroy()
 	end)
 
-	main.ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+	main.ScreenGui.Parent = game.CoreGui
 	main.MainBody.Parent = main.ScreenGui
 	main.TopBar.Parent = main.MainBody
 	main.TopBarGradient.Parent = main.TopBar
