@@ -1,3 +1,10 @@
+
+--Ancestor Lumber Tycoon 2 v1.0.4f
+
+--> Open Sourced by Ancestor
+
+--> Credit if you use any code :)
+
 repeat task.wait()until game:IsLoaded()
 local lib=loadstring(game:HttpGet("https://raw.githubusercontent.com/FindFirstAncestor/AncestorV3Public/main/FPSUI.lua"))();
 local functions={};
